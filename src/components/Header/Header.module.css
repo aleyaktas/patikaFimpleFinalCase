@@ -1,0 +1,20 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  padding: 32px 0;
+  width: 75%;
+  margin: auto;
+}
+
+.buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.button {
+  background-color: transparent;
+  color: #4a99d3;
+  font-size: 18px;
+  outline: none;
+  border: none;
+}
