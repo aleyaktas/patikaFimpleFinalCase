@@ -17,7 +17,7 @@ const Header = () => {
     },
   ];
   return (
-    <div className={styles.container}>
+    <>
       <img src={logo} alt="logo" width={120} />
       <div className={styles.buttons}>
         {links.map((link, index) => (
@@ -26,7 +26,7 @@ const Header = () => {
           </button>
         ))}
       </div>
-    </div>
+    </>
   );
 };
 

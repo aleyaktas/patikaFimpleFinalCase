@@ -1,4 +1,4 @@
-/* .container {
+.container {
   width: 75%;
   height: 100vh;
   margin: auto;
@@ -8,4 +8,12 @@
   right: 0;
   z-index: 1;
   opacity: 1;
-} */
+}
+
+.body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 100px;
+}
