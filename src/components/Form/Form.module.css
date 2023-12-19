@@ -1,0 +1,63 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 80vh;
+}
+
+.formElements {
+  width: 70%;
+  background-color: white;
+  padding: 40px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 2px 10px 28px 0px rgba(75, 0, 129, 0.12);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.formElement {
+  flex: 1;
+  margin-right: 10px;
+}
+
+label {
+  display: block;
+}
+
+.formInput {
+  width: 100%;
+  height: 24px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+}
+
+.formElement.largeHeight {
+  flex-basis: 100%;
+}
+
+.formElement label {
+  margin-bottom: 8px;
+}
+
+.formElement.largeHeight .formInput {
+  width: 100%;
+  height: 60px;
+}
+
+.formInput[type="file"] {
+  border: none;
+  flex-basis: 100%;
+}
+
+.formSubmitButton {
+  width: 100%;
+  height: 40px;
+  outline: none;
+  border: none;
+  border-radius: 4px;
+  background-color: #4a99d3;
+  color: white;
+}
