@@ -1,0 +1,81 @@
+.tableContainer {
+  margin-top: 2em;
+  width: 100%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.tableRow {
+  display: grid;
+  grid-template-columns: 2fr 3fr 2fr 2fr 2fr 1fr;
+  text-align: left;
+  padding: 1em;
+  align-items: center;
+}
+
+.tableRow {
+  border-bottom: 1px solid #eee;
+}
+
+.tableData {
+  color: #333;
+  font-size: 0.95em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 80%;
+}
+
+.status-done,
+.status-progress,
+.status-onhold,
+.status-rejected {
+  border-radius: 10px;
+  padding: 0.5em 1em;
+  text-align: center;
+  font-size: 0.85em;
+  width: 100px;
+}
+
+.status-done {
+  background-color: #4caf4fce;
+  color: white;
+}
+
+.status-progress {
+  background-color: #ffeb3bcf;
+  color: #333;
+}
+
+.status-onhold {
+  background-color: #2195f3c9;
+  color: white;
+}
+
+.status-rejected {
+  background-color: #f44336bb;
+  color: white;
+}
+
+.assigneeImage {
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.assigneeName {
+  display: flex;
+  align-items: center;
+}
+
+.detailButton {
+  display: flex;
+  align-items: center;
+  background-color: #2196f3;
+  padding: 8px 12px;
+  outline: none;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+}

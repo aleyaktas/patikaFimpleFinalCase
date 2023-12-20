@@ -1,0 +1,13 @@
+.tableHeader {
+  display: grid;
+  grid-template-columns: 2fr 3fr 2fr 2fr 2fr 1fr;
+  text-align: left;
+  padding: 1em;
+  align-items: center;
+  background-color: #f9f9f9;
+  border-bottom: 2px solid #eee;
+  color: #333;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.85em;
+}
