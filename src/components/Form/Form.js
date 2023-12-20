@@ -12,7 +12,7 @@ const Form = () => {
     address: Yup.string().required("Adres Bilgisi zorunlu"),
     photograph: Yup.mixed().test(
       "required",
-      "Please select a file",
+      "Dosya Seçimi zorunlu",
       (files) => files?.length > 0
     ),
   }).required();

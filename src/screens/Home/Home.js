@@ -1,5 +1,5 @@
-import Form from "../../components/Form/Form";
 import DefaultTemplate from "../../layout/DefaultTemplate/DefaultTemplate";
+import Form from "../../components/Form/Form";
 
 const Home = () => {
   return (

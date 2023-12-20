@@ -1,0 +1,22 @@
+.sideBar {
+  width: 300px;
+  background-color: #232637;
+  padding: 24px 0;
+}
+
+.sideBarItems {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  gap: 20px;
+}
+
+.sideBarItem {
+  display: flex;
+
+  height: 48px;
+  align-items: center;
+  gap: 8px;
+  color: #a8a9af;
+  cursor: pointer;
+}

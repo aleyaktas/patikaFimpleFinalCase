@@ -1,8 +1,8 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import "./App.css";
-import ApplicationStatus from "./components/ApplicationStatus/ApplicationStatus";
-import AdminLogin from "./components/AdminLogin/AdminLogin";
 import Home from "./screens/Home/Home";
+import ApplicationStatus from "./screens/ApplicationStatus/ApplicationStatus";
+import AdminLogin from "./screens/AdminLogin/AdminLogin";
 
 function App() {
   return (

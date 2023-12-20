@@ -2,6 +2,8 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import styles from "./AdminLogin.module.css";
+import DefaultTemplate from "../../layout/DefaultTemplate/DefaultTemplate";
+import { useNavigate } from "react-router-dom";
 
 const schema = yup.object().shape({
   username: yup.string().required("Kullanıcı adı zorunlu"),
@@ -9,6 +11,8 @@ const schema = yup.object().shape({
 });
 
 const AdminLogin = () => {
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -22,7 +26,7 @@ const AdminLogin = () => {
   };
 
   return (
-    <div className={styles.container}>
+    <DefaultTemplate>
       <form className={styles.loginCard} onSubmit={handleSubmit(onSubmit)}>
         <p className={styles.title}>Giriş Yap</p>
         <div className={styles.inputContainer}>
@@ -49,11 +53,15 @@ const AdminLogin = () => {
             <p className={styles.errorMessage}>{errors.password.message}</p>
           )}
         </div>
-        <button type="submit" className={styles.button}>
+        <button
+          onClick={() => navigate("/admin-dashboard")}
+          type="submit"
+          className={styles.button}
+        >
           Giriş
         </button>
       </form>
-    </div>
+    </DefaultTemplate>
   );
 };
 
