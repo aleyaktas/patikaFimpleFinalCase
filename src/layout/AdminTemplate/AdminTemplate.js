@@ -5,7 +5,7 @@ const AdminTemplate = ({ children }) => {
   return (
     <div className={styles.container}>
       <SideBar />
-      {children}
+      <div className={styles.body}>{children}</div>
     </div>
   );
 };

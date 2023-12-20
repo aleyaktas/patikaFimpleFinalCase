@@ -3,14 +3,14 @@ import Icon from "../../assets/icons/Icon";
 
 const SideBar = () => {
   const menuItems = [
-    { name: "Dashboard", iconName: "Dashboard", href: "/admin/dashboard" },
+    { name: "Panel", iconName: "Dashboard", href: "/admin/dashboard" },
     {
-      name: "Application List",
+      name: "Başvuru Listesi",
       iconName: "ApplicationList",
       href: "/admin/applicationList",
     },
-    { name: "Theme", iconName: "Theme", href: "/admin/dashboard" },
-    { name: "Logout", iconName: "Logout", href: "/admin" },
+    { name: "Tema", iconName: "Theme", href: "/admin/dashboard" },
+    { name: "Çıkış Yap", iconName: "Logout", href: "/admin" },
   ];
   return (
     <div className={styles.sideBar}>

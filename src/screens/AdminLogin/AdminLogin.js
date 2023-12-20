@@ -54,7 +54,7 @@ const AdminLogin = () => {
           )}
         </div>
         <button
-          onClick={() => navigate("/admin-dashboard")}
+          onClick={() => navigate("/admin-panel")}
           type="submit"
           className={styles.button}
         >
