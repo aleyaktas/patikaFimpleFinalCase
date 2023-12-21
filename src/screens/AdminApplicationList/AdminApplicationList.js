@@ -1,10 +1,13 @@
+import { useState } from "react";
 import Icon from "../../assets/icons/Icon";
 import TableBody from "../../components/Table/TableBody/TableBody";
 import TableHeader from "../../components/Table/TableHeader/TableHeader";
 import AdminTemplate from "../../layout/AdminTemplate/AdminTemplate";
 import styles from "./AdminApplicationList.module.css";
+import DetailCard from "../../components/DetailCard/DetailCard";
 
 const AdminApplicationList = () => {
+  const [detailDataOpen, setDetailDataOpen] = useState(false);
   const tableHeader = [
     "Ad-Soyad",
     "Başvuru Nedeni",
@@ -43,6 +46,19 @@ const AdminApplicationList = () => {
       trackingId: "WD-12348",
     },
   ];
+
+  const detailData = {
+    assignee: "John Doe",
+    age: 27,
+    identifier: 123456,
+    subject:
+      "Laborum occaecat laborum dolor tempor voluptate anim nostrud quis.",
+    status: "Bekliyor",
+    date: "Dec 3, 2017",
+    trackingId: "WD-12348",
+    address: "Örnek Mahalle, Örnek Sokak No: 123, Örnek Şehir",
+  };
+
   return (
     <AdminTemplate>
       <div className={styles.container}>
@@ -50,8 +66,19 @@ const AdminApplicationList = () => {
           <Icon name="ApplicationList" color="#232637" />
           <span>Başvuru Listesi</span>
         </div>
-        <TableHeader tableHeader={tableHeader} />
-        <TableBody tableData={tableData} />
+        <div className={styles.tableContainer}>
+          {detailDataOpen ? (
+            <DetailCard applicationDetail={detailData} />
+          ) : (
+            <>
+              <TableHeader tableHeader={tableHeader} />
+              <TableBody
+                tableData={tableData}
+                onClick={() => setDetailDataOpen(true)}
+              />
+            </>
+          )}
+        </div>
       </div>
     </AdminTemplate>
   );
