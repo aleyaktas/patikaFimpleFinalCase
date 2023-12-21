@@ -57,6 +57,7 @@ const AdminApplicationList = () => {
     date: "Dec 3, 2017",
     trackingId: "WD-12348",
     address: "Örnek Mahalle, Örnek Sokak No: 123, Örnek Şehir",
+    files: ["https://placekitten.com/200/200", "https://placebear.com/200/200"],
   };
 
   return (

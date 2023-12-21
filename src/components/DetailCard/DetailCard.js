@@ -1,4 +1,5 @@
 import Icon from "../../assets/icons/Icon";
+import Files from "../Files/Files";
 import styles from "./DetailCard.module.css";
 
 const DetailCard = ({ applicationDetail }) => {
@@ -13,6 +14,7 @@ const DetailCard = ({ applicationDetail }) => {
     address,
     files,
   } = applicationDetail;
+
   return (
     <>
       <div className={styles.backButtonContainer}>
@@ -62,7 +64,7 @@ const DetailCard = ({ applicationDetail }) => {
       </div>
       <div>
         <p className={styles.detailInformationText}>Ekler</p>
-        <p> 1,2,3</p>
+        <Files images={files} />
       </div>
       <button className={`${styles.button} ${styles.replyButton}`}>
         <Icon name="Reply" width="16px" color="white" />
