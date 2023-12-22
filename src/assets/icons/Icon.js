@@ -5,9 +5,11 @@ import { ReactComponent as Theme } from "./icons/theme.svg";
 import { ReactComponent as Right } from "./icons/right.svg";
 import { ReactComponent as Left } from "./icons/left.svg";
 import { ReactComponent as Reply } from "./icons/reply.svg";
+import { ReactComponent as Upload } from "./icons/upload.svg";
+import { ReactComponent as Close } from "./icons/close.svg";
 import { ReactComponent as Logout } from "./icons/logout.svg";
 
-const Icon = ({ name, width = "24px", height = "24px", color }) => {
+const Icon = ({ name, width = "24px", height = "24px", color, className }) => {
   const icons = {
     Logo,
     Dashboard,
@@ -16,11 +18,20 @@ const Icon = ({ name, width = "24px", height = "24px", color }) => {
     Right,
     Left,
     Reply,
+    Upload,
+    Close,
     Logout,
   };
 
   const IconItem = icons[name];
 
-  return <IconItem width={width} height={height} color={color || "black"} />;
+  return (
+    <IconItem
+      width={width}
+      height={height}
+      color={color || "black"}
+      className={className}
+    />
+  );
 };
 export default Icon;

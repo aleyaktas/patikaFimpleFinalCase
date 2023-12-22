@@ -2,7 +2,7 @@ import Icon from "../../assets/icons/Icon";
 import Files from "../Files/Files";
 import styles from "./DetailCard.module.css";
 
-const DetailCard = ({ applicationDetail }) => {
+const DetailCard = ({ applicationDetail, setDetailDataOpen }) => {
   const {
     assignee,
     trackingId,
@@ -18,7 +18,10 @@ const DetailCard = ({ applicationDetail }) => {
   return (
     <>
       <div className={styles.backButtonContainer}>
-        <button className={`${styles.button} ${styles.backButton}`}>
+        <button
+          className={`${styles.button} ${styles.backButton}`}
+          onClick={() => setDetailDataOpen(false)}
+        >
           <Icon name="Left" width="16px" color="black" />
           Geri
         </button>

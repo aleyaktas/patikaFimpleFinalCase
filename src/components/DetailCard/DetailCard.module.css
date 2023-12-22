@@ -12,6 +12,7 @@
   outline: none;
   border-radius: 8px;
   margin: 20px 0;
+  cursor: pointer;
 }
 
 .backButton {

@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import styles from "./Form.module.css";
+import FileUpload from "../../components/FileUpload/FileUpload";
 
 const Form = () => {
   const schema = Yup.object({
@@ -14,6 +15,11 @@ const Form = () => {
       "required",
       "Dosya Seçimi zorunlu",
       (files) => files?.length > 0
+    ),
+    files: Yup.array().test(
+      "fileCount",
+      "3'ten fazla belge eklenemez",
+      (arr) => arr.length <= 3
     ),
   }).required();
 
@@ -43,7 +49,6 @@ const Form = () => {
           <p className={styles.errorMessage}>{errors.name.message}</p>
         )}
       </div>
-
       <div className={styles.formElement}>
         <label htmlFor="surname">Soyad</label>
         <input
@@ -56,7 +61,6 @@ const Form = () => {
           <p className={styles.errorMessage}>{errors.surname.message}</p>
         )}
       </div>
-
       <div className={styles.formElement}>
         <label htmlFor="idNumber">TC</label>
         <input
@@ -69,7 +73,6 @@ const Form = () => {
           <p className={styles.errorMessage}>{errors.idNumber.message}</p>
         )}
       </div>
-
       <div className={`${styles.formElement} ${styles.largeHeight}`}>
         <label htmlFor="applicationReason">Başvuru Nedeni</label>
         <textarea
@@ -83,7 +86,6 @@ const Form = () => {
           </p>
         )}
       </div>
-
       <div className={`${styles.formElement} ${styles.largeHeight}`}>
         <label htmlFor="address">Adres Bilgisi</label>
         <textarea
@@ -95,20 +97,10 @@ const Form = () => {
           <p className={styles.errorMessage}>{errors.address.message}</p>
         )}
       </div>
-
       <div className={styles.formElement}>
         <label htmlFor="photograph">Fotoğraf Ekle</label>
-        <input
-          {...register("photograph")}
-          type="file"
-          id="photograph"
-          accept="image/jpeg, image/png, image/gif"
-        />
-        {errors.photograph && (
-          <p className={styles.errorMessage}>{errors.photograph.message}</p>
-        )}
+        <FileUpload />
       </div>
-
       <button type="submit" className={styles.formSubmitButton}>
         Gönder
       </button>

@@ -69,7 +69,10 @@ const AdminApplicationList = () => {
         </div>
         <div className={styles.tableContainer}>
           {detailDataOpen ? (
-            <DetailCard applicationDetail={detailData} />
+            <DetailCard
+              applicationDetail={detailData}
+              setDetailDataOpen={setDetailDataOpen}
+            />
           ) : (
             <>
               <TableHeader tableHeader={tableHeader} />
