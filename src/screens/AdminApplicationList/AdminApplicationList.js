@@ -1,13 +1,12 @@
-import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Icon from "../../assets/icons/Icon";
 import TableBody from "../../components/Table/TableBody/TableBody";
 import TableHeader from "../../components/Table/TableHeader/TableHeader";
 import AdminTemplate from "../../layout/AdminTemplate/AdminTemplate";
 import styles from "./AdminApplicationList.module.css";
-import DetailCard from "../../components/DetailCard/DetailCard";
 
 const AdminApplicationList = () => {
-  const [detailDataOpen, setDetailDataOpen] = useState(false);
+  const navigate = useNavigate();
   const tableHeader = [
     "Ad-Soyad",
     "Başvuru Nedeni",
@@ -47,19 +46,6 @@ const AdminApplicationList = () => {
     },
   ];
 
-  const detailData = {
-    assignee: "John Doe",
-    age: 27,
-    identifier: 123456,
-    subject:
-      "Laborum occaecat laborum dolor tempor voluptate anim nostrud quis.",
-    status: "Bekliyor",
-    date: "Dec 3, 2017",
-    trackingId: "WD-12348",
-    address: "Örnek Mahalle, Örnek Sokak No: 123, Örnek Şehir",
-    files: ["https://placekitten.com/200/200", "https://placebear.com/200/200"],
-  };
-
   return (
     <AdminTemplate>
       <div className={styles.container}>
@@ -68,20 +54,11 @@ const AdminApplicationList = () => {
           <span>Başvuru Listesi</span>
         </div>
         <div className={styles.tableContainer}>
-          {detailDataOpen ? (
-            <DetailCard
-              applicationDetail={detailData}
-              setDetailDataOpen={setDetailDataOpen}
-            />
-          ) : (
-            <>
-              <TableHeader tableHeader={tableHeader} />
-              <TableBody
-                tableData={tableData}
-                onClick={() => setDetailDataOpen(true)}
-              />
-            </>
-          )}
+          <TableHeader tableHeader={tableHeader} />
+          <TableBody
+            tableData={tableData}
+            onClick={() => navigate("/admin/basvuru-listesi/1")}
+          />
         </div>
       </div>
     </AdminTemplate>

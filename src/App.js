@@ -5,6 +5,7 @@ import ApplicationStatus from "./screens/ApplicationStatus/ApplicationStatus";
 import AdminLogin from "./screens/AdminLogin/AdminLogin";
 import AdminDashboard from "./screens/AdminDashboard/AdminDashboard";
 import AdminApplicationList from "./screens/AdminApplicationList/AdminApplicationList";
+import AdminApplicationDetails from "./screens/AdminApplicationDetails/AdminApplicationDetails";
 
 function App() {
   return (
@@ -18,6 +19,10 @@ function App() {
         <Route
           path="/admin/basvuru-listesi"
           element={<AdminApplicationList />}
+        />
+        <Route
+          path="/admin/basvuru-listesi/:id"
+          element={<AdminApplicationDetails />}
         />
       </Routes>
     </BrowserRouter>
