@@ -1,4 +1,4 @@
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import styles from "./Form.module.css";
@@ -10,20 +10,24 @@ const Form = () => {
     surname: Yup.string().required("Soyad zorunlu"),
     idNumber: Yup.string().required("TC zorunlu"),
     applicationReason: Yup.string().required("Başvuru Nedeni zorunlu"),
-    address: Yup.string().required("Adres Bilgisi zorunlu"),
-    photograph: Yup.mixed().test(
-      "required",
-      "Dosya Seçimi zorunlu",
-      (files) => files?.length > 0
-    ),
-    files: Yup.array().test(
-      "fileCount",
-      "3'ten fazla belge eklenemez",
-      (arr) => arr.length <= 3
-    ),
+    address: Yup.string()
+      .required("Adres Bilgisi zorunlu")
+      .test(
+        "addressCount",
+        "Adres bilgisi 200 karakterden uzun olamaz",
+        (address) => address?.length <= 200
+      ),
+    files: Yup.mixed()
+      .required("Dosya Seçimi zorunlu")
+      .test(
+        "fileCount",
+        "En fazla 3 dosya seçebilirsiniz",
+        (files) => files?.length <= 3
+      ),
   }).required();
 
   const {
+    control,
     register,
     handleSubmit,
     formState: { errors },
@@ -78,7 +82,7 @@ const Form = () => {
         <textarea
           {...register("applicationReason")}
           id="applicationReason"
-          className={styles.formInput}
+          className={`${styles.formInput} ${styles.textarea}`}
         />
         {errors.applicationReason && (
           <p className={styles.errorMessage}>
@@ -91,15 +95,32 @@ const Form = () => {
         <textarea
           {...register("address")}
           id="address"
-          className={styles.formInput}
+          className={`${styles.formInput} ${styles.textarea}`}
         />
         {errors.address && (
           <p className={styles.errorMessage}>{errors.address.message}</p>
         )}
       </div>
       <div className={styles.formElement}>
-        <label htmlFor="photograph">Fotoğraf Ekle</label>
-        <FileUpload />
+        <label htmlFor="files">Belge Ekle</label>
+        <Controller
+          name="files"
+          control={control}
+          rules={{
+            required: true,
+          }}
+          render={({ field }) => (
+            <FileUpload
+              id="files"
+              name="files"
+              register={register("files")}
+              field={field}
+            />
+          )}
+        />
+        {errors.files && (
+          <p className={styles.errorMessage}>{errors.files.message}</p>
+        )}
       </div>
       <button type="submit" className={styles.formSubmitButton}>
         Gönder

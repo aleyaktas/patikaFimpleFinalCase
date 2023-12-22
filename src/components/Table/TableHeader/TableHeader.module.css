@@ -1,6 +1,6 @@
 .tableHeader {
   display: grid;
-  grid-template-columns: 2fr 3fr 2fr 2fr 2fr 1fr;
+  grid-template-columns: 2fr 3fr 2fr 2fr 2fr 2fr;
   text-align: left;
   padding: 1em;
   align-items: center;

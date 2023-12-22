@@ -24,6 +24,7 @@ label {
   height: 32px;
   border-radius: 4px;
   border: 1px solid #ddd;
+  padding: 2px 8px;
 }
 
 .formElement.largeHeight {
@@ -42,6 +43,11 @@ label {
 .formInput[type="file"] {
   border: none;
   flex-basis: 100%;
+}
+
+.textarea {
+  padding: 8px;
+  resize: none;
 }
 
 .formSubmitButton {

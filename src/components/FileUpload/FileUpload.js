@@ -1,9 +1,9 @@
-import { useCallback, useEffect, useState } from "react";
+import { forwardRef, useCallback, useEffect, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import styles from "./FileUpload.module.css";
 import Icon from "../../assets/icons/Icon";
 
-const FileUplaod = () => {
+const FileUplaod = ({ register, field, ...props }) => {
   const [files, setFiles] = useState([]);
   const [previewUrls, setPreviewUrls] = useState({});
 
@@ -20,23 +20,17 @@ const FileUplaod = () => {
         reader.readAsDataURL(file);
       }
     });
+    field.onChange(files);
   }, [files]);
 
   const onDrop = useCallback((acceptedFiles) => {
-    setFiles((prevFiles) => {
-      const newTotal = prevFiles.length + acceptedFiles.length;
-      if (newTotal > 3) {
-        const filesToAdd = 3 - prevFiles.length;
-        return [...prevFiles, ...acceptedFiles.slice(0, filesToAdd)];
-      }
-      return [...prevFiles, ...acceptedFiles];
-    });
+    setFiles((prevFiles) => [...prevFiles, ...acceptedFiles]);
   }, []);
 
   const { getRootProps, getInputProps } = useDropzone({
     onDrop,
-    accept: "image/*",
-    maxFiles: 3,
+    // accept: "image/*",
+    // maxFiles: 3,
   });
 
   const removeFile = (event, fileName) => {
@@ -46,13 +40,11 @@ const FileUplaod = () => {
 
   return (
     <div {...getRootProps()} className={styles.dropzoneStyle}>
-      <input {...getInputProps()} />
-      {files.length === 0 && (
-        <div className={styles.dropzoneTitleHeader}>
-          <Icon name="Upload" className={styles.icon} />
-          <p>Bir dosyayı buraya sürükleyip bırakın veya tıklayın</p>
-        </div>
-      )}
+      <input {...getInputProps()} {...props} register={register} />
+      <div className={styles.dropzoneTitleHeader}>
+        <Icon name="Upload" className={styles.icon} />
+        <p>Bir dosyayı buraya sürükleyip bırakın veya tıklayın</p>
+      </div>
 
       <ul className={styles.fileListStyle}>
         {files.map((file) => (
