@@ -2,13 +2,13 @@ import styles from "./TableBody.module.css";
 
 const TableBody = ({ tableData, onClick }) => {
   return (
-    <div className={styles.tableContainer}>
+    <>
       {tableData.map((item, index) => {
         return (
-          <div key={index} className={styles.tableRow}>
-            <div className={styles.tableData}>{item.assignee}</div>
-            <div className={styles.tableData}>{item.subject}</div>
-            <div className={styles.statusContainer}>
+          <tr key={index} className={styles.tableRow}>
+            <td className={styles.tableData}>{item.assignee}</td>
+            <td className={styles.tableData}>{item.subject}</td>
+            <td className={styles.statusContainer}>
               <div
                 className={`${
                   styles[
@@ -17,18 +17,20 @@ const TableBody = ({ tableData, onClick }) => {
                 }`}
               />
               {item.status}
-            </div>
-            <div className={styles.tableData}>{item.lastUpdate}</div>
-            <div className={styles.tableData}>{item.trackingId}</div>
-            <div className={styles.tableData}>
+            </td>
+            <td className={styles.tableData}>{item.lastUpdate}</td>
+            <td className={`${styles.tableData} ${styles.hidden}`}>
+              {item.trackingId}
+            </td>
+            <td className={styles.button}>
               <button onClick={() => onClick()} className={styles.detailButton}>
                 Detay
               </button>
-            </div>
-          </div>
+            </td>
+          </tr>
         );
       })}
-    </div>
+    </>
   );
 };
 

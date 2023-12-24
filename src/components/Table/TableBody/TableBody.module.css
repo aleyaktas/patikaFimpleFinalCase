@@ -1,25 +1,23 @@
-.tableContainer {
-  width: 100%;
-  /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
-  /* border-radius: 8px; */
-  overflow-y: scroll;
-}
-
 .tableRow {
   display: grid;
-  grid-template-columns: 2fr 3fr 2fr 1.5fr 1.5fr 1.5fr;
+  grid-template-columns: 2fr 3fr 2fr 2fr 2fr 1.5fr;
   text-align: left;
   padding: 15px;
   align-items: center;
+  border-bottom: 1px solid #eee;
+  gap: 10px;
 }
 
-.tableRow {
-  border-bottom: 1px solid #eee;
+.tableRow > td:not(.button) {
+  min-width: 150px;
+}
+
+.tableRow:last-child {
+  border-bottom: none;
 }
 
 .tableData {
   color: #333;
-  font-size: 16px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -77,6 +75,7 @@
 }
 
 .detailButton {
+  width: fit-content;
   display: flex;
   align-items: center;
   background-color: white;
@@ -87,4 +86,17 @@
   color: rgb(31, 31, 31);
   cursor: pointer;
   font-weight: bold;
+}
+
+@media (max-width: 1024px) {
+  .cardChartContainer {
+    flex-direction: column;
+  }
+  .detailButton {
+    font-size: 12px;
+  }
+  .tableData,
+  .statusContainer {
+    font-size: 14px;
+  }
 }

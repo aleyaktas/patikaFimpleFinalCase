@@ -13,13 +13,14 @@
 
 .menuButton {
   display: none;
-  background-color: #e7e7e7;
+  background-color: #ffffff;
   border: none;
   outline: none;
-  border-radius: 8px;
+  border-radius: 4px;
   position: absolute;
-  top: 10px;
-  left: 10px;
+  top: 16px;
+  left: 16px;
+  padding: 4px;
 }
 
 .hidden {
@@ -32,6 +33,6 @@
   }
 
   .menuButton {
-    display: inline-block;
+    display: flex;
   }
 }

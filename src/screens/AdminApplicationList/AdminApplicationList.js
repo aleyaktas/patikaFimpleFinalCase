@@ -20,28 +20,28 @@ const AdminApplicationList = () => {
       subject:
         "Fund is not received Fund is not received Fund is not received Fund is not received",
       status: "DONE",
-      lastUpdate: "Dec 5, 2017",
+      lastUpdate: "07/12/2022",
       trackingId: "WD-12345",
     },
     {
       assignee: "Stella Johnson",
       subject: "High loading time",
       status: "PROGRESS",
-      lastUpdate: "Dec 12, 2017",
+      lastUpdate: "03/12/2022",
       trackingId: "WD-12346",
     },
     {
       assignee: "Marina Michel",
       subject: "Website down for one week",
       status: "ON HOLD",
-      lastUpdate: "Dec 16, 2017",
+      lastUpdate: "15/11/2022",
       trackingId: "WD-12347",
     },
     {
       assignee: "John Doe",
       subject: "Losing control on server",
       status: "REJECTED",
-      lastUpdate: "Dec 3, 2017",
+      lastUpdate: "10/11/2022",
       trackingId: "WD-12348",
     },
   ];
@@ -54,11 +54,13 @@ const AdminApplicationList = () => {
           <span>Başvuru Listesi</span>
         </div>
         <div className={styles.tableContainer}>
-          <TableHeader tableHeader={tableHeader} />
-          <TableBody
-            tableData={tableData}
-            onClick={() => navigate("/admin/basvuru-listesi/1")}
-          />
+          <table>
+            <TableHeader tableHeader={tableHeader} />
+            <TableBody
+              tableData={tableData}
+              onClick={() => navigate("/admin/basvuru-listesi/1")}
+            />
+          </table>
         </div>
       </div>
     </AdminTemplate>

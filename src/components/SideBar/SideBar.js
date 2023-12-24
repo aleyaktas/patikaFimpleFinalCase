@@ -22,10 +22,12 @@ const SideBar = ({ sidebarVisible, toggleSidebar }) => {
       }}
     >
       <button
-        className={`${styles.closeButton} ${sidebarVisible && styles.hidden}`}
+        className={`${styles.closeButton} ${
+          sidebarVisible && styles.showButton
+        }`}
         onClick={toggleSidebar}
       >
-        <Icon name="Close" />
+        <Icon name="Close" color="white" />
       </button>
       <Icon color="white" name="Logo" width="300px" />
       <ul className={styles.sideBarItems}>
