@@ -60,3 +60,9 @@
   height: auto;
   color: red;
 }
+
+@media (max-width: 768px) {
+  .fileListStyle {
+    justify-content: center;
+  }
+}

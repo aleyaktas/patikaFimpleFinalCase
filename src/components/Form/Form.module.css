@@ -1,5 +1,5 @@
 .formElements {
-  width: 60%;
+  width: 700px;
   background-color: white;
   padding: 40px;
   border: 1px solid #ddd;
@@ -8,6 +8,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
+  margin-top: 50px;
 }
 
 .formElement {
@@ -66,4 +67,23 @@ label {
   font-size: 14px;
   color: red;
   padding: 4px 0;
+}
+
+@media (max-width: 768px) {
+  .formElements {
+    width: 100%;
+    margin-top: 24px;
+  }
+
+  .formInput {
+    height: 24px;
+  }
+
+  .formElement {
+    flex: auto;
+  }
+
+  .formElement label {
+    font-size: 14px;
+  }
 }

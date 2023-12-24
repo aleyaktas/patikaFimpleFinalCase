@@ -14,12 +14,48 @@
 
 .button {
   width: max-content;
-  padding: 8px 16px;
+  padding: 8px 12px;
   background-color: transparent;
   color: #232637;
   font-size: 18px;
   outline: none;
   cursor: pointer;
   border: none;
-  /* border-bottom: 1px solid #aeaeae; */
+}
+
+.logo {
+  width: 120px;
+}
+
+@media (max-width: 425px) {
+  .container {
+    height: 8vh;
+  }
+
+  .buttons {
+    gap: 4px;
+  }
+
+  .button {
+    font-size: 12px;
+    padding: 2px 4px;
+  }
+  .logo {
+    width: 70px;
+  }
+}
+
+@media (min-width: 425px) and (max-width: 768px) {
+  .buttons {
+    gap: 6px;
+  }
+
+  .button {
+    font-size: 16px;
+    padding: 4px 8px;
+  }
+
+  .logo {
+    width: 100px;
+  }
 }

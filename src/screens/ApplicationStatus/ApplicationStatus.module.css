@@ -1,5 +1,5 @@
 .statusCard {
-  width: 50%;
+  width: 700px;
   background-color: white;
   padding: 40px;
   border: 1px solid #ddd;
@@ -19,6 +19,7 @@
   margin-bottom: 10px;
   padding-bottom: 5px;
   font-weight: bold;
+  text-align: center;
 }
 
 .statusImg {
@@ -48,4 +49,14 @@
   background-color: #4a99d3;
   color: white;
   cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .statusCard {
+    width: 100%;
+  }
+
+  .title {
+    font-size: 20px;
+  }
 }
