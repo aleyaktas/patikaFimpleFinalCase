@@ -1,19 +1,19 @@
 .container {
-  padding: 40px;
+  padding: 52px;
 }
 
 .header {
   display: flex;
   align-items: center;
   gap: 4px;
-  margin-bottom: 20px;
+  padding: 10px;
 }
 
 .cardContainer {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   justify-content: space-between;
-  gap: 20px;
+  gap: 16px;
 }
 
 .card {
@@ -24,10 +24,10 @@
   text-align: center;
   padding: 20px;
   gap: 10px;
-  width: 250px;
   height: 200px;
   color: white;
   position: relative;
+  border-radius: 10px;
 }
 
 .card img {
@@ -65,9 +65,15 @@
 }
 
 .cardChart {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 250px;
+  max-height: 300px;
   padding: 50px;
   background-color: rgba(255, 255, 255, 0.935);
   padding-right: 10px;
+  border-radius: 10px;
 }
 
 .cardLineChart {
@@ -78,8 +84,32 @@
   flex: 1;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1444px) {
   .cardChartContainer {
     flex-direction: column;
+  }
+  .cardLineChart,
+  .cardDoughnutChart {
+    flex: 1;
+  }
+  .cardChart {
+    padding: 16px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .cardLineChart,
+  .cardDoughnutChart {
+    flex: 1;
+  }
+  .cardChart {
+    height: 350px;
+    max-height: 350px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .cardContainer {
+    grid-template-columns: repeat(4, 1fr);
   }
 }
