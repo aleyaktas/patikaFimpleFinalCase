@@ -7,9 +7,9 @@
 
 .tableRow {
   display: grid;
-  grid-template-columns: 2fr 3fr 2fr 2fr 2fr 2fr;
+  grid-template-columns: 2fr 3fr 2fr 1.5fr 1.5fr 1.5fr;
   text-align: left;
-  padding: 1em;
+  padding: 15px;
   align-items: center;
 }
 
@@ -19,7 +19,7 @@
 
 .tableData {
   color: #333;
-  font-size: 0.95em;
+  font-size: 16px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;

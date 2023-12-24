@@ -7,6 +7,7 @@ import { ReactComponent as Left } from "./icons/left.svg";
 import { ReactComponent as Reply } from "./icons/reply.svg";
 import { ReactComponent as Upload } from "./icons/upload.svg";
 import { ReactComponent as Close } from "./icons/close.svg";
+import { ReactComponent as Menu } from "./icons/menu.svg";
 import { ReactComponent as Logout } from "./icons/logout.svg";
 
 const Icon = ({ name, width = "24px", height = "24px", color, className }) => {
@@ -20,6 +21,7 @@ const Icon = ({ name, width = "24px", height = "24px", color, className }) => {
     Reply,
     Upload,
     Close,
+    Menu,
     Logout,
   };
 

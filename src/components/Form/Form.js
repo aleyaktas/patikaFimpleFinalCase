@@ -17,13 +17,11 @@ const Form = () => {
         "Adres bilgisi 200 karakterden uzun olamaz",
         (address) => address?.length <= 200
       ),
-    files: Yup.mixed()
-      .required("Dosya Seçimi zorunlu")
-      .test(
-        "fileCount",
-        "En fazla 3 dosya seçebilirsiniz",
-        (files) => files?.length <= 3
-      ),
+    files: Yup.mixed().test(
+      "fileCount",
+      "En fazla 3 dosya seçebilirsiniz",
+      (files) => files?.length <= 3
+    ),
   }).required();
 
   const {
