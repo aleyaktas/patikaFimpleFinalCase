@@ -3,8 +3,11 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import styles from "./Form.module.css";
 import FileUpload from "../../components/FileUpload/FileUpload";
+import { useNavigate } from "react-router-dom";
 
 const Form = () => {
+  const navigate = useNavigate();
+
   const schema = Yup.object({
     name: Yup.string().required("Ad zorunlu"),
     surname: Yup.string().required("Soyad zorunlu"),
@@ -35,6 +38,7 @@ const Form = () => {
 
   const onSubmit = (data) => {
     console.log(data);
+    navigate("/basvuru-basarili");
   };
 
   return (
