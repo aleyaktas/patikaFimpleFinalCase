@@ -1,6 +1,12 @@
 import styles from "./TableBody.module.css";
 
 const TableBody = ({ tableData, onClick }) => {
+  const StatusTexts = {
+    0: "Bekliyor",
+    1: "İptal Edildi",
+    default: "Tamamlandı",
+  };
+
   return (
     <>
       {tableData.map((item, index) => {
@@ -9,14 +15,8 @@ const TableBody = ({ tableData, onClick }) => {
             <td className={styles.tableData}>{item.assignee}</td>
             <td className={styles.tableData}>{item.subject}</td>
             <td className={styles.statusContainer}>
-              <div
-                className={`${
-                  styles[
-                    `status-${item.status.replace(/\s/g, "").toLowerCase()}`
-                  ]
-                }`}
-              />
-              {item.status}
+              <div className={styles[`status-${item.status}`]} />
+              {StatusTexts[item.status] || StatusTexts.default}
             </td>
             <td className={styles.tableData}>{item.lastUpdate}</td>
             <td className={`${styles.tableData} ${styles.hidden}`}>

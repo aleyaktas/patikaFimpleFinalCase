@@ -34,11 +34,6 @@
 .status-progress,
 .status-onhold,
 .status-rejected {
-  /* border-radius: 8px;
-  padding: 0.5em 1em;
-  text-align: center;
-  font-size: 0.85em;
-  width: 100px; */
   width: 12px;
   height: 12px;
   border-radius: 50%;

@@ -21,28 +21,28 @@ const AdminApplicationList = () => {
         "Fund is not received Fund is not received Fund is not received Fund is not received",
       status: "DONE",
       lastUpdate: "07/12/2022",
-      trackingId: "WD-12345",
+      trackingId: "12345",
     },
     {
       assignee: "Stella Johnson",
       subject: "High loading time",
       status: "PROGRESS",
       lastUpdate: "03/12/2022",
-      trackingId: "WD-12346",
+      trackingId: "12346",
     },
     {
       assignee: "Marina Michel",
       subject: "Website down for one week",
       status: "ON HOLD",
       lastUpdate: "15/11/2022",
-      trackingId: "WD-12347",
+      trackingId: "12347",
     },
     {
       assignee: "John Doe",
       subject: "Losing control on server",
       status: "REJECTED",
       lastUpdate: "10/11/2022",
-      trackingId: "WD-12348",
+      trackingId: "12348",
     },
   ];
 

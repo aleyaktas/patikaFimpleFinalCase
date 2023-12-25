@@ -6,6 +6,7 @@ import AdminLogin from "./screens/AdminLogin/AdminLogin";
 import AdminDashboard from "./screens/AdminDashboard/AdminDashboard";
 import AdminApplicationList from "./screens/AdminApplicationList/AdminApplicationList";
 import AdminApplicationDetails from "./screens/AdminApplicationDetails/AdminApplicationDetails";
+import ApplicationDetails from "./screens/ApplicationDetails/ApplicationDetails";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/" element={<Navigate to="/basvuru-olustur" replace />} />
         <Route path="/basvuru-olustur" element={<Home />} />
         <Route path="/basvuru-sorgula" element={<ApplicationStatus />} />
+        <Route path="/basvuru-sorgula/:id" element={<ApplicationDetails />} />
         <Route path="/admin" element={<AdminLogin />} />
         <Route path="/admin/panel" element={<AdminDashboard />} />
         <Route
