@@ -11,20 +11,26 @@ const Form = () => {
   const schema = Yup.object({
     name: Yup.string().required("Ad zorunlu"),
     surname: Yup.string().required("Soyad zorunlu"),
-    idNumber: Yup.string().required("TC zorunlu"),
+    idNumber: Yup.string()
+      .required("TC zorunlu")
+      .matches(/^[1-9]{1}[0-9]{9}[02468]{1}$/, "Geçersiz TC Kimlik Numarası")
+      .length(11, "TC Kimlik Numarası 11 haneli olmalıdır"),
     applicationReason: Yup.string().required("Başvuru Nedeni zorunlu"),
     address: Yup.string()
       .required("Adres Bilgisi zorunlu")
+      .max(200, "Adres bilgisi 200 karakterden uzun olamaz"),
+    files: Yup.mixed()
       .test(
-        "addressCount",
-        "Adres bilgisi 200 karakterden uzun olamaz",
-        (address) => address?.length <= 200
-      ),
-    files: Yup.mixed().test(
-      "fileCount",
-      "En fazla 3 dosya seçebilirsiniz",
-      (files) => files?.length <= 3
-    ),
+        "fileCount",
+        "En fazla 3 dosya seçebilirsiniz",
+        (files) => files?.length <= 3
+      )
+      .test("totalSize", "Toplam dosya boyutu 5 MB'ı aşamaz", (files) => {
+        if (!files) return true;
+        const totalSize = files.reduce((acc, file) => acc + file.size, 0);
+        const maxSize = 5 * 1024 * 1024;
+        return totalSize <= maxSize;
+      }),
   }).required();
 
   const {

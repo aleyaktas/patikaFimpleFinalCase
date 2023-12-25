@@ -13,7 +13,7 @@ const AdminApplicationDetails = () => {
     identifier: 123456,
     subject:
       "Laborum occaecat laborum dolor tempor voluptate anim nostrud quis.",
-    status: "Bekliyor",
+    status: 2,
     date: "Dec 3, 2017",
     trackingId: "12348",
     address: "Örnek Mahalle, Örnek Sokak No: 123, Örnek Şehir",

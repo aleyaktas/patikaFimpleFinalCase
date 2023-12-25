@@ -1,9 +1,10 @@
 import { useState } from "react";
 import Files from "../Files/Files";
 import styles from "./DetailsCard.module.css";
+import DropdownMenu from "../DropdownMenu/DropdownMenu";
 
 const DetailsCard = ({ applicationDetail }) => {
-  const [isAuthToken, setIsAuthToken] = useState();
+  const [isAuthToken, setIsAuthToken] = useState(true);
   const {
     assignee,
     trackingId,
@@ -24,6 +25,12 @@ const DetailsCard = ({ applicationDetail }) => {
 
   const statusText = StatusTexts[status] || StatusTexts.default;
   const statusClass = styles[`status-${status}`];
+
+  const options = [
+    { value: "option1", label: "Bekliyor" },
+    { value: "option2", label: "Tamamlandı" },
+    { value: "option3", label: "İptal Edildi" },
+  ];
 
   return (
     <>
@@ -63,17 +70,7 @@ const DetailsCard = ({ applicationDetail }) => {
               placeholder="Mesajınızı Yazınız..."
             />
           </div>
-          <div>
-            <label>Başvuru Durumu</label>
-            <select className={styles.select}>
-              <option>Tamamlandı</option>
-              <option>Bekliyor</option>
-              <option>İptal Edildi</option>
-            </select>
-            <button className={`${styles.button} ${styles.replyButton}`}>
-              Kaydet
-            </button>
-          </div>
+          <DropdownMenu options={options} />
         </div>
       )}
     </>

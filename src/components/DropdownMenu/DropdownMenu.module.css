@@ -1,0 +1,45 @@
+.select-container {
+  margin: 10px;
+  position: relative;
+  display: inline-block;
+}
+
+select {
+  width: 120px;
+  height: 36px;
+  padding: 4px 20px 4px 12px;
+  border-radius: 4px;
+  border: 1px solid #e7e7e7e7;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
+  outline: none;
+  background-color: white;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+  -moz-appearance: none;
+  background-image: url("../../assets/icons/icons/down.svg");
+  background-repeat: no-repeat;
+  background-size: 16px 16px;
+  background-position: calc(100% - 4px);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+select:hover {
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+select option {
+  padding: 10px;
+  background-color: white;
+  color: #333;
+}
+
+select option:hover {
+  background-color: #f2f2f2;
+}
+
+select option:checked {
+  background-color: #ddd;
+}

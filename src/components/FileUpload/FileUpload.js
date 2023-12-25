@@ -1,7 +1,8 @@
-import { forwardRef, useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import styles from "./FileUpload.module.css";
 import Icon from "../../assets/icons/Icon";
+import defaultFileIcon from "../../assets/icons/icons/default-file.svg";
 
 const FileUplaod = ({ register, field, ...props }) => {
   const [files, setFiles] = useState([]);
@@ -29,6 +30,7 @@ const FileUplaod = ({ register, field, ...props }) => {
 
   const { getRootProps, getInputProps } = useDropzone({
     onDrop,
+    // maxSize: 5242880,
     // accept: "image/*",
     // maxFiles: 3,
   });
@@ -45,23 +47,27 @@ const FileUplaod = ({ register, field, ...props }) => {
         <Icon name="Upload" className={styles.icon} />
         <p>Bir dosyayı buraya sürükleyip bırakın veya tıklayın</p>
       </div>
-
       <ul className={styles.fileListStyle}>
-        {files.map((file) => (
-          <li
-            key={file.name}
-            style={{
-              backgroundImage: `url(${previewUrls[file.name]})`,
-            }}
-            className={styles.fileItemStyle}
-          >
-            <button
-              onClick={(e) => removeFile(e, file.name)}
-              className={styles.removeButtonStyle}
+        {files.map((file, index) => (
+          <div className={styles.fileContainer}>
+            <li
+              key={`${index - file.name}`}
+              style={{
+                backgroundImage: previewUrls[file.name]
+                  ? `url(${previewUrls[file.name]})`
+                  : `url(${defaultFileIcon})`,
+              }}
+              className={styles.fileItemStyle}
             >
-              <Icon name="Close" className={styles.closeIcon} />
-            </button>
-          </li>
+              <button
+                onClick={(e) => removeFile(e, file.name)}
+                className={styles.removeButtonStyle}
+              >
+                <Icon name="Close" className={styles.closeIcon} />
+              </button>
+            </li>
+            <p className={styles.fileName}>{file.name}</p>
+          </div>
         ))}
       </ul>
     </div>
