@@ -16,7 +16,8 @@
     "morgan": "^1.10.0",
     "mongoose": "^7.2.0",
     "mongoose-autopopulate": "^1.0.1",
-    "config": "^3.3.9"
+    "config": "^3.3.9",
+    "jsonwebtoken": "^9.0.0"
   },
   "devDependencies": {
     "concurrently": "^8.0.1",
