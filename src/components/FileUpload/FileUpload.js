@@ -35,8 +35,8 @@ const FileUplaod = ({ register, field, ...props }) => {
     // maxFiles: 3,
   });
 
-  const removeFile = (event, fileName) => {
-    event.stopPropagation();
+  const removeFile = (e, fileName) => {
+    e.stopPropagation();
     setFiles(files.filter((file) => file.name !== fileName));
   };
 
@@ -49,9 +49,8 @@ const FileUplaod = ({ register, field, ...props }) => {
       </div>
       <ul className={styles.fileListStyle}>
         {files.map((file, index) => (
-          <div className={styles.fileContainer}>
+          <div className={styles.fileContainer} key={`${index}-${file.name}`}>
             <li
-              key={`${index - file.name}`}
               style={{
                 backgroundImage: previewUrls[file.name]
                   ? `url(${previewUrls[file.name]})`

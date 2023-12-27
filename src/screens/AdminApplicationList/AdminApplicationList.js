@@ -5,9 +5,18 @@ import TableHeader from "../../components/Table/TableHeader/TableHeader";
 import AdminTemplate from "../../layout/AdminTemplate/AdminTemplate";
 import styles from "./AdminApplicationList.module.css";
 import DropdownMenu from "../../components/DropdownMenu/DropdownMenu";
+import { useState } from "react";
+import ReactPaginate from "react-paginate";
 
 const AdminApplicationList = () => {
   const navigate = useNavigate();
+
+  const [pageNumber, setPageNumber] = useState(1);
+  const [pageCount, setPageCount] = useState(20);
+
+  const PER_PAGE_COUNT = 20;
+  const PAGE_RANGE_DISPLAYED = 1;
+
   const tableHeader = [
     "Ad-Soyad",
     "Başvuru Nedeni",
@@ -30,6 +39,20 @@ const AdminApplicationList = () => {
       status: "PROGRESS",
       lastUpdate: "03/12/2022",
       trackingId: "12346",
+    },
+    {
+      assignee: "Marina Michel",
+      subject: "Website down for one week",
+      status: "ON HOLD",
+      lastUpdate: "15/11/2022",
+      trackingId: "12347",
+    },
+    {
+      assignee: "John Doe",
+      subject: "Losing control on server",
+      status: "REJECTED",
+      lastUpdate: "10/11/2022",
+      trackingId: "12348",
     },
     {
       assignee: "Marina Michel",
@@ -79,6 +102,21 @@ const AdminApplicationList = () => {
             />
           </table>
         </div>
+        <ReactPaginate
+          containerClassName={styles.pagination}
+          activeClassName={styles.selected}
+          previousClassName={styles.previous}
+          disabledClassName={styles.disabled}
+          nextClassName={styles.next}
+          forcePage={pageNumber - 1}
+          breakLabel="..."
+          nextLabel="Sonraki >"
+          onPageChange={(e) => setPageNumber(e.selected + 1)}
+          pageCount={pageCount - 1}
+          pageRangeDisplayed={PAGE_RANGE_DISPLAYED}
+          previousLabel="< Önceki"
+          renderOnZeroPageCount={null}
+        />
       </div>
     </AdminTemplate>
   );
