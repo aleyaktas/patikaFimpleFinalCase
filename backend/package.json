@@ -1,0 +1,22 @@
+{
+  "name": "fimple-backend",
+  "version": "1.0.0",
+  "description": "Fimple Final Case Backend",
+  "main": "server.js",
+  "author": "Aleyna AKTAŞ",
+  "license": "MIT",
+  "scripts": {
+    "server": "nodemon server"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "express-validator": "^7.0.1",
+    "request": "^2.88.2",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "concurrently": "^8.0.1",
+    "nodemon": "^2.0.22"
+  }
+}
