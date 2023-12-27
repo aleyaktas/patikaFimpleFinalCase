@@ -1,0 +1,4 @@
+{
+  "mongoURI": "mongodb+srv://aleynaaktas627:aleynaaktas@fimple-case.h7ql0xn.mongodb.net/fimple-case?retryWrites=true&w=majority",
+  "jwtSecret": "aleyna"
+}
