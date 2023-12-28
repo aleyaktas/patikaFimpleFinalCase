@@ -1,8 +1,11 @@
 import DefaultTemplate from "../../layout/DefaultTemplate/DefaultTemplate";
 import Form from "../../components/Form/Form";
 import { createForm } from "../../services/actions";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
+  const navigate = useNavigate();
+
   const formSubmit = async (data) => {
     try {
       const formDataToSend = new FormData();
@@ -16,7 +19,8 @@ const Home = () => {
           formDataToSend.append("files", file);
         });
       }
-      await createForm(formDataToSend);
+      const res = await createForm(formDataToSend);
+      navigate("/basvuru-basarili", { state: { data: res } });
     } catch (error) {
       console.error("Error submitting form:", error.message);
     }

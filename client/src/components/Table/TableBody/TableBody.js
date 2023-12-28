@@ -1,11 +1,8 @@
+import getStatusInfo from "../../../helper/applicationStatus";
 import styles from "./TableBody.module.css";
 
 const TableBody = ({ tableData, onClick }) => {
-  const StatusTexts = {
-    0: "Bekliyor",
-    1: "İptal Edildi",
-    default: "Tamamlandı",
-  };
+  const { statusText, statusClass } = getStatusInfo(0);
 
   return (
     <>
@@ -15,8 +12,8 @@ const TableBody = ({ tableData, onClick }) => {
             <td className={styles.tableData}>{item.assignee}</td>
             <td className={styles.tableData}>{item.subject}</td>
             <td className={styles.statusContainer}>
-              <div className={styles[`status-${item.status}`]} />
-              {StatusTexts[item.status] || StatusTexts.default}
+              <div className={styles[statusClass]} />
+              {statusText}
             </td>
             <td className={styles.tableData}>{item.lastUpdate}</td>
             <td className={`${styles.tableData} ${styles.hidden}`}>

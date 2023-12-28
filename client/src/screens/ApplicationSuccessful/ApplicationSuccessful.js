@@ -3,23 +3,14 @@ import Icon from "../../assets/icons/Icon";
 import DetailsCard from "../../components/DetailsCard/DetailsCard";
 import DefaultTemplate from "../../layout/DefaultTemplate/DefaultTemplate";
 import styles from "./ApplicationSuccessful.module.css";
+import { useLocation } from "react-router-dom";
 
 const ApplicationSuccessful = () => {
+  const location = useLocation();
+  const detailData = location.state?.data;
+
   const [copySuccess, setCopySuccess] = useState("");
   const [isCopied, setIsCopied] = useState(false);
-
-  const detailData = {
-    assignee: "John Doe",
-    age: 27,
-    identifier: 123456,
-    subject:
-      "Laborum occaecat laborum dolor tempor voluptate anim nostrud quis.",
-    status: 0,
-    date: "Dec 3, 2017",
-    trackingId: "12348",
-    address: "Örnek Mahalle, Örnek Sokak No: 123, Örnek Şehir",
-    files: ["https://placekitten.com/200/200", "https://placebear.com/200/200"],
-  };
 
   const handleCopyFeedback = (message) => {
     setCopySuccess(message);
@@ -50,7 +41,7 @@ const ApplicationSuccessful = () => {
                 height="24px"
               />
             </button>
-            {detailData.identifier}
+            {detailData.code}
           </div>
         </div>
         <DetailsCard applicationDetail={detailData} />

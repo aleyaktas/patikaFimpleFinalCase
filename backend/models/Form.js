@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const FormSchema = new mongoose.Schema({
   name: {
@@ -31,7 +31,7 @@ const FormSchema = new mongoose.Schema({
     default: Math.random().toString(36).substr(2, 8),
   },
   status: {
-    // 0: Pending, 1: Completed, -1: Canceled
+    // 0: Pending, 1: Completed, 2: Canceled
     type: Number,
     default: 0,
   },
@@ -45,4 +45,4 @@ const FormSchema = new mongoose.Schema({
   },
 });
 
-module.exports = Form = mongoose.model('Form', FormSchema);
+module.exports = Form = mongoose.model("Form", FormSchema);

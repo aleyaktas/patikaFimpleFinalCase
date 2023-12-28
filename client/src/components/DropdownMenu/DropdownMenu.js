@@ -2,7 +2,6 @@ import { useState } from "react";
 import styles from "./DropdownMenu.module.css";
 
 const DropdownMenu = ({ options }) => {
-  console.log(options);
   const [selectedOption, setSelectedOption] = useState("");
 
   const handleChange = (event) => {
