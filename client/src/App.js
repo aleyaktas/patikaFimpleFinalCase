@@ -47,15 +47,15 @@ function App() {
     },
     {
       path: "/admin/panel",
-      element: <PrivateRoute Component={<CustomSuspenseWrapper />} />,
+      element: <PrivateRoute Component={CustomSuspenseWrapper} />,
     },
     {
       path: "/admin/basvuru-listesi",
-      element: <PrivateRoute Component={<AdminApplicationList />} />,
+      element: <PrivateRoute Component={AdminApplicationList} />,
     },
     {
       path: "/admin/basvuru-listesi/:id",
-      element: <PrivateRoute Component={<AdminApplicationDetails />} />,
+      element: <PrivateRoute Component={AdminApplicationDetails} />,
     },
   ]);
 

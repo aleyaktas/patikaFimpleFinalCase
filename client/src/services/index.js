@@ -19,6 +19,11 @@ const send = async (endpoint, params, method, data, isFormData) => {
   formBody = formBody.join("&");
   const response = await fetch(uri, {
     method: method,
+    headers: !isFormData
+      ? {
+          "Content-Type": "application/json; charset=UTF-8",
+        }
+      : undefined,
     body: data && isFormData ? data : JSON.stringify(data),
   });
 

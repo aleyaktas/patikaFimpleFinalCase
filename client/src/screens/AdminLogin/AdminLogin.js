@@ -4,6 +4,8 @@ import * as yup from "yup";
 import styles from "./AdminLogin.module.css";
 import DefaultTemplate from "../../layout/DefaultTemplate/DefaultTemplate";
 import { useNavigate } from "react-router-dom";
+import { adminLogin } from "../../services/actions";
+import { useAuthContext } from "../../context/AuthContext";
 
 const schema = yup.object().shape({
   username: yup.string().required("Kullanıcı adı zorunlu"),
@@ -13,6 +15,8 @@ const schema = yup.object().shape({
 const AdminLogin = () => {
   const navigate = useNavigate();
 
+  const { login } = useAuthContext();
+
   const {
     register,
     handleSubmit,
@@ -21,8 +25,10 @@ const AdminLogin = () => {
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = async (data) => {
+    const res = await adminLogin(data);
+    await login(res.token);
+    navigate("/admin/panel");
   };
 
   return (
@@ -53,11 +59,7 @@ const AdminLogin = () => {
             <p className={styles.errorMessage}>{errors.password.message}</p>
           )}
         </div>
-        <button
-          onClick={() => navigate("/admin/panel")}
-          type="submit"
-          className={styles.button}
-        >
+        <button type="submit" className={styles.button}>
           Giriş
         </button>
       </form>
