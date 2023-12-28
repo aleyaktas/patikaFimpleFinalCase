@@ -7,6 +7,8 @@ import AdminApplicationList from "./screens/AdminApplicationList/AdminApplicatio
 import AdminApplicationDetails from "./screens/AdminApplicationDetails/AdminApplicationDetails";
 import ApplicationDetails from "./screens/ApplicationDetails/ApplicationDetails";
 import ApplicationSuccessful from "./screens/ApplicationSuccessful/ApplicationSuccessful";
+import { AuthProvider } from "./context/AuthContext";
+import PrivateRoute from "./routes/PrivateRoute";
 import "./App.css";
 
 const AdminDashboard = lazy(() =>
@@ -21,6 +23,7 @@ function App() {
       </Suspense>
     );
   };
+
   const router = createBrowserRouter([
     {
       path: "/basvuru-olustur",
@@ -44,22 +47,22 @@ function App() {
     },
     {
       path: "/admin/panel",
-      element: <CustomSuspenseWrapper />,
+      element: <PrivateRoute Component={<CustomSuspenseWrapper />} />,
     },
     {
       path: "/admin/basvuru-listesi",
-      element: <AdminApplicationList />,
+      element: <PrivateRoute Component={<AdminApplicationList />} />,
     },
     {
       path: "/admin/basvuru-listesi/:id",
-      element: <AdminApplicationDetails />,
+      element: <PrivateRoute Component={<AdminApplicationDetails />} />,
     },
   ]);
 
   return (
-    <>
+    <AuthProvider>
       <RouterProvider router={router} />
-    </>
+    </AuthProvider>
   );
 }
 
