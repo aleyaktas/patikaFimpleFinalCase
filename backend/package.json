@@ -6,7 +6,8 @@
   "author": "Aleyna AKTAŞ",
   "license": "MIT",
   "scripts": {
-    "server": "nodemon server"
+    "server": "nodemon server",
+    "dev": "concurrently -n 'server,client' -c 'red,green' \"yarn run server\" \"cd .. && cd client && yarn start\""
   },
   "dependencies": {
     "cors": "^2.8.5",

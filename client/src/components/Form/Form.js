@@ -5,17 +5,22 @@ import styles from "./Form.module.css";
 import FileUpload from "../../components/FileUpload/FileUpload";
 import { useNavigate } from "react-router-dom";
 
-const Form = () => {
+const Form = ({ formSubmit }) => {
   const navigate = useNavigate();
 
   const schema = Yup.object({
     name: Yup.string().required("Ad zorunlu"),
     surname: Yup.string().required("Soyad zorunlu"),
-    idNumber: Yup.string()
+    age: Yup.number()
+      .typeError("Yaş bir sayı olmalıdır")
+      .positive("Yaş pozitif bir sayı olmalıdır")
+      .integer("Yaş tam sayı olmalıdır")
+      .required("Yaş zorunlu"),
+    identity: Yup.string()
       .required("TC zorunlu")
       .matches(/^[1-9]{1}[0-9]{9}[02468]{1}$/, "Geçersiz TC Kimlik Numarası")
       .length(11, "TC Kimlik Numarası 11 haneli olmalıdır"),
-    applicationReason: Yup.string().required("Başvuru Nedeni zorunlu"),
+    reason: Yup.string().required("Başvuru Nedeni zorunlu"),
     address: Yup.string()
       .required("Adres Bilgisi zorunlu")
       .max(200, "Adres bilgisi 200 karakterden uzun olamaz"),
@@ -43,8 +48,8 @@ const Form = () => {
   });
 
   const onSubmit = (data) => {
-    console.log(data);
-    navigate("/basvuru-basarili");
+    formSubmit(data);
+    // navigate("/basvuru-basarili");
   };
 
   return (
@@ -74,28 +79,39 @@ const Form = () => {
         )}
       </div>
       <div className={styles.formElement}>
-        <label htmlFor="idNumber">TC</label>
+        <label htmlFor="identity">TC</label>
         <input
-          {...register("idNumber")}
+          {...register("identity")}
           type="text"
-          id="idNumber"
+          id="identity"
           className={styles.formInput}
         />
-        {errors.idNumber && (
-          <p className={styles.errorMessage}>{errors.idNumber.message}</p>
+        {errors.identity && (
+          <p className={styles.errorMessage}>{errors.identity.message}</p>
+        )}
+      </div>
+
+      <div className={styles.formElement}>
+        <label htmlFor="age">Age</label>
+        <input
+          {...register("age")}
+          type="text"
+          id="age"
+          className={styles.formInput}
+        />
+        {errors.age && (
+          <p className={styles.errorMessage}>{errors.age.message}</p>
         )}
       </div>
       <div className={`${styles.formElement} ${styles.largeHeight}`}>
-        <label htmlFor="applicationReason">Başvuru Nedeni</label>
+        <label htmlFor="reason">Başvuru Nedeni</label>
         <textarea
-          {...register("applicationReason")}
-          id="applicationReason"
+          {...register("reason")}
+          id="reason"
           className={`${styles.formInput} ${styles.textarea}`}
         />
-        {errors.applicationReason && (
-          <p className={styles.errorMessage}>
-            {errors.applicationReason.message}
-          </p>
+        {errors.reason && (
+          <p className={styles.errorMessage}>{errors.reason.message}</p>
         )}
       </div>
       <div className={`${styles.formElement} ${styles.largeHeight}`}>
