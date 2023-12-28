@@ -2,9 +2,18 @@ import styles from "./ApplicationStatus.module.css";
 import status from "../../assets/icons/icons/application-status.svg";
 import DefaultTemplate from "../../layout/DefaultTemplate/DefaultTemplate";
 import { useNavigate } from "react-router-dom";
+import { getFormByCode } from "../../services/actions";
+import { useEffect, useState } from "react";
 
 const ApplicationStatus = () => {
   const navigate = useNavigate();
+
+  const [code, setCode] = useState();
+
+  useEffect(() => {
+    console.log(code);
+  }, [code]);
+
   return (
     <DefaultTemplate>
       <div className={styles.statusCard}>
@@ -14,10 +23,11 @@ const ApplicationStatus = () => {
           <input
             className={styles.statusInput}
             placeholder="Başvuru Sorgula..."
+            onChange={(e) => setCode(e.target.value)}
           />
           <button
             className={styles.button}
-            onClick={() => navigate("/basvuru-sorgula/1")}
+            onClick={() => code && navigate(`/basvuru-sorgula/${code}`)}
           >
             Sorgula
           </button>

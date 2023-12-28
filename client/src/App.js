@@ -31,7 +31,7 @@ function App() {
       element: <ApplicationStatus />,
     },
     {
-      path: "/basvuru-sorgula/:id",
+      path: "/basvuru-sorgula/:code",
       element: <ApplicationDetails />,
     },
     {

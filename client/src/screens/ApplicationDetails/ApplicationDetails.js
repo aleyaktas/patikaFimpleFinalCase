@@ -1,24 +1,32 @@
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import DetailsCard from "../../components/DetailsCard/DetailsCard";
 import DefaultTemplate from "../../layout/DefaultTemplate/DefaultTemplate";
 import styles from "./ApplicationDetails.module.css";
+import { getFormByCode } from "../../services/actions";
 
 const ApplicationDetails = () => {
-  const detailData = {
-    assignee: "John Doe",
-    age: 27,
-    identifier: 123456,
-    subject:
-      "Laborum occaecat laborum dolor tempor voluptate anim nostrud quis.",
-    status: 0,
-    date: "Dec 3, 2017",
-    trackingId: "12348",
-    address: "Örnek Mahalle, Örnek Sokak No: 123, Örnek Şehir",
-    files: ["https://placekitten.com/200/200", "https://placebear.com/200/200"],
+  const { code } = useParams();
+
+  const [detailData, setDetailData] = useState();
+
+  const getDetailData = async () => {
+    try {
+      const res = await getFormByCode(code);
+      setDetailData(res);
+    } catch (error) {
+      console.log(error);
+    }
   };
+
+  useEffect(() => {
+    getDetailData();
+  }, []);
+
   return (
     <DefaultTemplate>
       <div className={styles.container}>
-        <DetailsCard applicationDetail={detailData} />
+        {detailData && <DetailsCard applicationDetail={detailData} />}
       </div>
     </DefaultTemplate>
   );
