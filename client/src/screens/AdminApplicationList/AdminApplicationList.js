@@ -1,4 +1,3 @@
-import { useNavigate } from "react-router-dom";
 import Icon from "../../assets/icons/Icon";
 import TableBody from "../../components/Table/TableBody/TableBody";
 import TableHeader from "../../components/Table/TableHeader/TableHeader";
@@ -16,7 +15,6 @@ import {
 } from "../../constants/pagination";
 
 const AdminApplicationList = () => {
-  const navigate = useNavigate();
   const { setLoading } = useLoadingContext();
 
   const [applicationList, setApplicationList] = useState([]);
@@ -79,10 +77,7 @@ const AdminApplicationList = () => {
         <div className={styles.tableContainer}>
           <table className={styles.table}>
             <TableHeader tableHeader={tableHeader} />
-            <TableBody
-              tableData={applicationList}
-              onClick={() => navigate("/admin/basvuru-listesi/1")}
-            />
+            <TableBody tableData={applicationList} />
           </table>
         </div>
         <ReactPaginate

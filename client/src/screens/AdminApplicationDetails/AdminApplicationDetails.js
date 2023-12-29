@@ -1,24 +1,34 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Icon from "../../assets/icons/Icon";
 import DetailsCard from "../../components/DetailsCard/DetailsCard";
 import AdminTemplate from "../../layout/AdminTemplate/AdminTemplate";
 import styles from "./AdminApplicationDetails.module.css";
+import { useEffect, useState } from "react";
+import { getFormByCode } from "../../services/actions";
+import { useLoadingContext } from "../../context/Loading";
 
 const AdminApplicationDetails = () => {
   const navigate = useNavigate();
+  const { code } = useParams();
+  const { setLoading } = useLoadingContext();
 
-  const detailData = {
-    assignee: "John Doe",
-    age: 27,
-    identifier: 123456,
-    subject:
-      "Laborum occaecat laborum dolor tempor voluptate anim nostrud quis.",
-    status: 2,
-    date: "Dec 3, 2017",
-    trackingId: "12348",
-    address: "Örnek Mahalle, Örnek Sokak No: 123, Örnek Şehir",
-    files: ["https://placekitten.com/200/200", "https://placebear.com/200/200"],
+  const [detailData, setDetailData] = useState([]);
+
+  const getFormDetails = async () => {
+    try {
+      setLoading(true);
+      const res = await getFormByCode(code);
+      setDetailData(res);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
   };
+
+  useEffect(() => {
+    getFormDetails();
+  }, []);
 
   return (
     <AdminTemplate>
@@ -33,7 +43,7 @@ const AdminApplicationDetails = () => {
           </button>
         </div>
         <div className={styles.tableContainer}>
-          <DetailsCard applicationDetail={detailData} />
+          {detailData && <DetailsCard applicationDetail={detailData} />}
         </div>
       </div>
     </AdminTemplate>

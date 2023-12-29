@@ -1,10 +1,14 @@
+import { useNavigate } from "react-router-dom";
 import { useLoadingContext } from "../../../context/Loading";
 import getStatusInfo from "../../../helper/applicationStatus";
 import Loading from "../../Loading/Loading";
 import styles from "./TableBody.module.css";
+import getFullName from "../../../helper/getFullName";
+import getDate from "../../../helper/getDate";
 
-const TableBody = ({ tableData, onClick }) => {
+const TableBody = ({ tableData }) => {
   const { loading } = useLoadingContext();
+  const navigate = useNavigate();
 
   if (loading) {
     return <Loading />;
@@ -17,19 +21,23 @@ const TableBody = ({ tableData, onClick }) => {
           const { statusText, statusClass } = getStatusInfo(item.status);
           return (
             <tr key={index} className={styles.tableRow}>
-              <td className={styles.tableData}>{item.name}</td>
+              <td className={styles.tableData}>
+                {getFullName(item.name, item.surname)}
+              </td>
               <td className={styles.tableData}>{item.reason}</td>
               <td className={styles.statusContainer}>
                 <div className={styles[statusClass]} />
                 {statusText}
               </td>
-              <td className={styles.tableData}>{item.createdAt}</td>
+              <td className={styles.tableData}>{getDate(item.createdAt)}</td>
               <td className={`${styles.tableData} ${styles.hidden}`}>
                 {item.code}
               </td>
               <td className={styles.button}>
                 <button
-                  onClick={() => onClick()}
+                  onClick={() =>
+                    navigate(`/admin/basvuru-listesi/${item.code}`)
+                  }
                   className={styles.detailButton}
                 >
                   Detay

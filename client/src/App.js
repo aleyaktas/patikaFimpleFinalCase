@@ -55,7 +55,7 @@ function App() {
       element: <PrivateRoute Component={AdminApplicationList} />,
     },
     {
-      path: "/admin/basvuru-listesi/:id",
+      path: "/admin/basvuru-listesi/:code",
       element: <PrivateRoute Component={AdminApplicationDetails} />,
     },
   ]);
