@@ -5,17 +5,46 @@ import TableHeader from "../../components/Table/TableHeader/TableHeader";
 import AdminTemplate from "../../layout/AdminTemplate/AdminTemplate";
 import styles from "./AdminApplicationList.module.css";
 import DropdownMenu from "../../components/DropdownMenu/DropdownMenu";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
+import { getForms } from "../../services/actions";
+import { statusOptions } from "../../constants/applicationStatus";
+import { useLoadingContext } from "../../context/Loading";
+import {
+  PAGE_RANGE_DISPLAYED,
+  PER_PAGE_COUNT,
+} from "../../constants/pagination";
 
 const AdminApplicationList = () => {
   const navigate = useNavigate();
+  const { setLoading } = useLoadingContext();
 
+  const [applicationList, setApplicationList] = useState([]);
+  const [searchText, setSearchText] = useState("");
   const [pageNumber, setPageNumber] = useState(1);
-  const [pageCount, setPageCount] = useState(20);
+  const [pageCount, setPageCount] = useState(1);
+  const [selectedOption, setSelectedOption] = useState("");
 
-  const PER_PAGE_COUNT = 20;
-  const PAGE_RANGE_DISPLAYED = 1;
+  const handleSelect = (e) => {
+    setSelectedOption(e.target.value);
+  };
+
+  const getAllForms = async () => {
+    try {
+      setLoading(true);
+      const res = await getForms(pageNumber, searchText, selectedOption);
+      setApplicationList(res.forms);
+      setPageCount(Math.ceil(res.count / PER_PAGE_COUNT + 1));
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    getAllForms();
+  }, [pageNumber, searchText, selectedOption]);
 
   const tableHeader = [
     "Ad-Soyad",
@@ -23,57 +52,6 @@ const AdminApplicationList = () => {
     "Başvuru Durumu",
     "Başvuru Tarihi",
     "Başvuru Numarası",
-  ];
-  const tableData = [
-    {
-      assignee: "David Grey",
-      subject:
-        "Fund is not received Fund is not received Fund is not received Fund is not received",
-      status: "DONE",
-      lastUpdate: "07/12/2022",
-      trackingId: "12345",
-    },
-    {
-      assignee: "Stella Johnson",
-      subject: "High loading time",
-      status: "PROGRESS",
-      lastUpdate: "03/12/2022",
-      trackingId: "12346",
-    },
-    {
-      assignee: "Marina Michel",
-      subject: "Website down for one week",
-      status: "ON HOLD",
-      lastUpdate: "15/11/2022",
-      trackingId: "12347",
-    },
-    {
-      assignee: "John Doe",
-      subject: "Losing control on server",
-      status: "REJECTED",
-      lastUpdate: "10/11/2022",
-      trackingId: "12348",
-    },
-    {
-      assignee: "Marina Michel",
-      subject: "Website down for one week",
-      status: "ON HOLD",
-      lastUpdate: "15/11/2022",
-      trackingId: "12347",
-    },
-    {
-      assignee: "John Doe",
-      subject: "Losing control on server",
-      status: "REJECTED",
-      lastUpdate: "10/11/2022",
-      trackingId: "12348",
-    },
-  ];
-
-  const options = [
-    { value: "option1", label: "Bekliyor" },
-    { value: "option2", label: "Tamamlandı" },
-    { value: "option3", label: "İptal Edildi" },
   ];
 
   return (
@@ -89,15 +67,20 @@ const AdminApplicationList = () => {
               className={styles.searchInput}
               placeholder="Arama Yap..."
               type="search"
+              onChange={(e) => setSearchText(e.target.value)}
             />
-            <DropdownMenu options={options} />
+            <DropdownMenu
+              options={statusOptions}
+              selectedOption={selectedOption}
+              onSelect={handleSelect}
+            />
           </div>
         </div>
         <div className={styles.tableContainer}>
-          <table>
+          <table className={styles.table}>
             <TableHeader tableHeader={tableHeader} />
             <TableBody
-              tableData={tableData}
+              tableData={applicationList}
               onClick={() => navigate("/admin/basvuru-listesi/1")}
             />
           </table>

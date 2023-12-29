@@ -8,6 +8,7 @@ import AdminApplicationDetails from "./screens/AdminApplicationDetails/AdminAppl
 import ApplicationDetails from "./screens/ApplicationDetails/ApplicationDetails";
 import ApplicationSuccessful from "./screens/ApplicationSuccessful/ApplicationSuccessful";
 import { AuthProvider } from "./context/AuthContext";
+import { LoadingProvider } from "./context/Loading";
 import PrivateRoute from "./routes/PrivateRoute";
 import "./App.css";
 
@@ -61,7 +62,9 @@ function App() {
 
   return (
     <AuthProvider>
-      <RouterProvider router={router} />
+      <LoadingProvider>
+        <RouterProvider router={router} />
+      </LoadingProvider>
     </AuthProvider>
   );
 }

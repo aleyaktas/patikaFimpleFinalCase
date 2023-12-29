@@ -1,16 +1,10 @@
 import { useState } from "react";
 import styles from "./DropdownMenu.module.css";
 
-const DropdownMenu = ({ options }) => {
-  const [selectedOption, setSelectedOption] = useState("");
-
-  const handleChange = (event) => {
-    setSelectedOption(event.target.value);
-  };
-
+const DropdownMenu = ({ options, onSelect, selectedOption }) => {
   return (
     <div className={styles.selectContainer}>
-      <select value={selectedOption} onChange={handleChange}>
+      <select value={selectedOption} onChange={onSelect}>
         <option value="">Seçiniz</option>
         {options.map((option) => (
           <option key={option.value} value={option.value}>

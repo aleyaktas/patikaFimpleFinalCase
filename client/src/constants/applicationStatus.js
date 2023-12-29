@@ -2,6 +2,7 @@ export const StatusTexts = {
   0: "Bekliyor",
   1: "Tamamlandı",
   2: "İptal Edildi",
+  default: "",
 };
 
 export const statusOptions = [

@@ -22,6 +22,7 @@ const send = async (endpoint, params, method, data, isFormData) => {
     headers: !isFormData
       ? {
           "Content-Type": "application/json; charset=UTF-8",
+          "fimple-auth-token": localStorage.getItem("token"),
         }
       : undefined,
     body: data && isFormData ? data : JSON.stringify(data),
