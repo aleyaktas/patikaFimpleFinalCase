@@ -4,7 +4,11 @@ import DetailsCard from "../../components/DetailsCard/DetailsCard";
 import AdminTemplate from "../../layouts/AdminTemplate/AdminTemplate";
 import styles from "./AdminApplicationDetails.module.css";
 import { useEffect, useState } from "react";
-import { getFormByCode, updateFormStatus } from "../../services/actions";
+import {
+  createCommentToForm,
+  getFormByCode,
+  updateFormStatus,
+} from "../../services/actions";
 import { useLoadingContext } from "../../contexts/Loading";
 
 const AdminApplicationDetails = () => {
@@ -26,8 +30,12 @@ const AdminApplicationDetails = () => {
     }
   };
 
-  const handleSave = async (selectedOption) => {
-    await updateFormStatus(code, selectedOption);
+  const handleSave = async (selectedOption, comment) => {
+    if (selectedOption !== detailData.status)
+      await updateFormStatus(code, selectedOption);
+    if (comment) {
+      await createCommentToForm(detailData._id, comment);
+    }
     getFormDetails();
   };
 
@@ -51,7 +59,9 @@ const AdminApplicationDetails = () => {
           {detailData && (
             <DetailsCard
               applicationDetail={detailData}
-              handleSave={(selectedOption) => handleSave(selectedOption)}
+              handleSave={(selectedOption, comment) =>
+                handleSave(selectedOption, comment)
+              }
             />
           )}
         </div>

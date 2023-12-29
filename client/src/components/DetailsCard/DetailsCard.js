@@ -13,8 +13,9 @@ const DetailsCard = ({ applicationDetail, handleSave }) => {
   const { token } = useAuthContext();
   const { loading } = useLoadingContext();
   const [selectedOption, setSelectedOption] = useState(
-    applicationDetail?.status
+    applicationDetail.status
   );
+  const [comment, setComment] = useState("");
 
   if (loading) {
     return <Loading />;
@@ -68,6 +69,7 @@ const DetailsCard = ({ applicationDetail, handleSave }) => {
             <textarea
               className={styles.messageText}
               placeholder="Mesajınızı Yazınız..."
+              onChange={(e) => setComment(e.target.value)}
             />
           </div>
           <DropdownMenu
@@ -77,7 +79,7 @@ const DetailsCard = ({ applicationDetail, handleSave }) => {
           />
           <button
             className={styles.replyButton}
-            onClick={() => handleSave(selectedOption)}
+            onClick={() => handleSave(selectedOption, comment)}
           >
             Kaydet
           </button>

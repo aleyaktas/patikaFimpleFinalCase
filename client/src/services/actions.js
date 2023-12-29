@@ -34,3 +34,8 @@ export const updateFormStatus = async (code, status) => {
   const result = await put(`/forms/${code}`, "", { status });
   return result;
 };
+
+export const createCommentToForm = async (formId, comment) => {
+  const result = await post(`/comments/${formId}`, "", { comment });
+  return result;
+};
