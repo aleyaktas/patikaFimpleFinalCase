@@ -4,7 +4,7 @@ import DetailsCard from "../../components/DetailsCard/DetailsCard";
 import AdminTemplate from "../../layouts/AdminTemplate/AdminTemplate";
 import styles from "./AdminApplicationDetails.module.css";
 import { useEffect, useState } from "react";
-import { getFormByCode } from "../../services/actions";
+import { getFormByCode, updateFormStatus } from "../../services/actions";
 import { useLoadingContext } from "../../contexts/Loading";
 
 const AdminApplicationDetails = () => {
@@ -26,6 +26,11 @@ const AdminApplicationDetails = () => {
     }
   };
 
+  const handleSave = async (selectedOption) => {
+    await updateFormStatus(code, selectedOption);
+    getFormDetails();
+  };
+
   useEffect(() => {
     getFormDetails();
   }, []);
@@ -43,7 +48,12 @@ const AdminApplicationDetails = () => {
           </button>
         </div>
         <div className={styles.tableContainer}>
-          {detailData && <DetailsCard applicationDetail={detailData} />}
+          {detailData && (
+            <DetailsCard
+              applicationDetail={detailData}
+              handleSave={(selectedOption) => handleSave(selectedOption)}
+            />
+          )}
         </div>
       </div>
     </AdminTemplate>

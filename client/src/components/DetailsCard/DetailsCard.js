@@ -1,4 +1,3 @@
-import Files from "../Files/Files";
 import styles from "./DetailsCard.module.css";
 import DropdownMenu from "../DropdownMenu/DropdownMenu";
 import getStatusInfo from "../../helpers/applicationStatus";
@@ -8,16 +7,24 @@ import Loading from "../Loading/Loading";
 import { useLoadingContext } from "../../contexts/Loading";
 import getFullName from "../../helpers/getFullName";
 import getDate from "../../helpers/getDate";
+import { useState } from "react";
 
-const DetailsCard = ({ applicationDetail }) => {
+const DetailsCard = ({ applicationDetail, handleSave }) => {
   const { token } = useAuthContext();
   const { loading } = useLoadingContext();
+  const [selectedOption, setSelectedOption] = useState(
+    applicationDetail?.status
+  );
 
   if (loading) {
     return <Loading />;
   }
 
   const { statusText, statusClass } = getStatusInfo(applicationDetail?.status);
+
+  const handleSelect = (e) => {
+    setSelectedOption(e.target.value);
+  };
 
   return (
     <>
@@ -63,7 +70,17 @@ const DetailsCard = ({ applicationDetail }) => {
               placeholder="Mesajınızı Yazınız..."
             />
           </div>
-          <DropdownMenu options={statusOptions} />
+          <DropdownMenu
+            options={statusOptions}
+            selectedOption={selectedOption}
+            onSelect={handleSelect}
+          />
+          <button
+            className={styles.replyButton}
+            onClick={() => handleSave(selectedOption)}
+          >
+            Kaydet
+          </button>
         </div>
       )}
     </>

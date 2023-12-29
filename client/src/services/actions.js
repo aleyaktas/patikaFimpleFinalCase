@@ -1,4 +1,4 @@
-import { get, post } from ".";
+import { get, post, put } from ".";
 
 export const createForm = async (data) => {
   const result = await post("/forms", "", data, true);
@@ -27,5 +27,10 @@ export const getForms = async (
 
 export const getStatistics = async () => {
   const result = await get("/forms/statistics", "");
+  return result;
+};
+
+export const updateFormStatus = async (code, status) => {
+  const result = await put(`/forms/${code}`, "", { status });
   return result;
 };
