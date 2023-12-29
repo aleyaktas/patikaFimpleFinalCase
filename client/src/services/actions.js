@@ -24,3 +24,8 @@ export const getForms = async (
   const result = await get("/forms", params);
   return result;
 };
+
+export const getStatistics = async () => {
+  const result = await get("/forms/statistics", "");
+  return result;
+};

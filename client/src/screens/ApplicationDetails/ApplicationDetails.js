@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import DetailsCard from "../../components/DetailsCard/DetailsCard";
-import DefaultTemplate from "../../layout/DefaultTemplate/DefaultTemplate";
+import DefaultTemplate from "../../layouts/DefaultTemplate/DefaultTemplate";
 import styles from "./ApplicationDetails.module.css";
 import { getFormByCode } from "../../services/actions";
 

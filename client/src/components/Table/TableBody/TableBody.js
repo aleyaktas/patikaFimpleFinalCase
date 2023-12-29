@@ -1,10 +1,10 @@
 import { useNavigate } from "react-router-dom";
-import { useLoadingContext } from "../../../context/Loading";
-import getStatusInfo from "../../../helper/applicationStatus";
+import { useLoadingContext } from "../../../contexts/Loading";
+import getStatusInfo from "../../../helpers/applicationStatus";
 import Loading from "../../Loading/Loading";
 import styles from "./TableBody.module.css";
-import getFullName from "../../../helper/getFullName";
-import getDate from "../../../helper/getDate";
+import getFullName from "../../../helpers/getFullName";
+import getDate from "../../../helpers/getDate";
 
 const TableBody = ({ tableData }) => {
   const { loading } = useLoadingContext();

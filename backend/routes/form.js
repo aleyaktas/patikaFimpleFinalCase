@@ -27,7 +27,7 @@ const upload = multer({ storage: storage });
 router.get("/", auth, async (req, res) => {
   try {
     const page = parseInt(req.query.page) || 1;
-    const { search, status, createdAt } = req.query;
+    const { search, status } = req.query;
 
     if (page <= 0) {
       return res.status(400).json({ msg: "Geçersiz sayfa numarası" });
@@ -106,6 +106,43 @@ router.post("/", upload.array("files"), async (req, res) => {
   }
 });
 
+// @route   GET /api/forms/statistics
+// @desc    Get forms statistics
+// @access  Private
+router.get("/statistics", auth, async (req, res) => {
+  try {
+    const forms = await Form.find({});
+    const weekStatistics = [];
+    for (let i = 0; i < 7; i++) {
+      const date = new Date();
+      date.setDate(date.getDate() - i);
+      const count = forms.filter(
+        (form) =>
+          form.createdAt.getDate() === date.getDate() &&
+          form.createdAt.getMonth() === date.getMonth() &&
+          form.createdAt.getFullYear() === date.getFullYear()
+      ).length;
+      weekStatistics.push({
+        date: date.toLocaleDateString("tr-TR", { weekday: "long" }),
+        count,
+      });
+    }
+
+    const statistics = {
+      total: forms.length,
+      pending: forms.filter((form) => form.status === 0).length,
+      completed: forms.filter((form) => form.status === 1).length,
+      canceled: forms.filter((form) => form.status === -1).length,
+      week: weekStatistics,
+    };
+
+    res.json(statistics);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Sunucu hatası");
+  }
+});
+
 // @route   GET /api/forms/:code
 // @desc    Get  form by code
 // @access  Public
@@ -152,29 +189,6 @@ router.put("/:code", auth, async (req, res) => {
     form.status = req.body.status;
     await form.save();
     res.json(form);
-  } catch (err) {
-    console.error(err.message);
-    res.status(500).send("Sunucu hatası");
-  }
-});
-
-// @route   GET /api/forms/search
-// @desc    Search forms by all fields
-// @access  Private
-router.get("/search", auth, async (req, res) => {
-  try {
-    const { searchKey } = req.query;
-
-    const forms = await Form.find({
-      $or: [
-        { name: { $regex: searchKey, $options: "i" } },
-        { surname: { $regex: searchKey, $options: "i" } },
-        { code: { $regex: searchKey, $options: "i" } },
-        { reason: { $regex: searchKey, $options: "i" } },
-      ],
-    });
-
-    res.json(forms);
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Sunucu hatası");

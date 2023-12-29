@@ -2,10 +2,10 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import styles from "./AdminLogin.module.css";
-import DefaultTemplate from "../../layout/DefaultTemplate/DefaultTemplate";
+import DefaultTemplate from "../../layouts/DefaultTemplate/DefaultTemplate";
 import { useNavigate } from "react-router-dom";
 import { adminLogin } from "../../services/actions";
-import { useAuthContext } from "../../context/AuthContext";
+import { useAuthContext } from "../../contexts/AuthContext";
 
 const schema = yup.object().shape({
   username: yup.string().required("Kullanıcı adı zorunlu"),

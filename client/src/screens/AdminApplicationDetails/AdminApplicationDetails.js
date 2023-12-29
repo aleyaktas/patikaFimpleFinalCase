@@ -1,11 +1,11 @@
 import { useNavigate, useParams } from "react-router-dom";
 import Icon from "../../assets/icons/Icon";
 import DetailsCard from "../../components/DetailsCard/DetailsCard";
-import AdminTemplate from "../../layout/AdminTemplate/AdminTemplate";
+import AdminTemplate from "../../layouts/AdminTemplate/AdminTemplate";
 import styles from "./AdminApplicationDetails.module.css";
 import { useEffect, useState } from "react";
 import { getFormByCode } from "../../services/actions";
-import { useLoadingContext } from "../../context/Loading";
+import { useLoadingContext } from "../../contexts/Loading";
 
 const AdminApplicationDetails = () => {
   const navigate = useNavigate();

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Icon from "../../assets/icons/Icon";
 import DetailsCard from "../../components/DetailsCard/DetailsCard";
-import DefaultTemplate from "../../layout/DefaultTemplate/DefaultTemplate";
+import DefaultTemplate from "../../layouts/DefaultTemplate/DefaultTemplate";
 import styles from "./ApplicationSuccessful.module.css";
 import { useLocation } from "react-router-dom";
 

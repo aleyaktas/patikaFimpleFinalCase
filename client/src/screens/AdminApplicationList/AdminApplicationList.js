@@ -1,14 +1,14 @@
 import Icon from "../../assets/icons/Icon";
 import TableBody from "../../components/Table/TableBody/TableBody";
 import TableHeader from "../../components/Table/TableHeader/TableHeader";
-import AdminTemplate from "../../layout/AdminTemplate/AdminTemplate";
+import AdminTemplate from "../../layouts/AdminTemplate/AdminTemplate";
 import styles from "./AdminApplicationList.module.css";
 import DropdownMenu from "../../components/DropdownMenu/DropdownMenu";
 import { useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
 import { getForms } from "../../services/actions";
 import { statusOptions } from "../../constants/applicationStatus";
-import { useLoadingContext } from "../../context/Loading";
+import { useLoadingContext } from "../../contexts/Loading";
 import {
   PAGE_RANGE_DISPLAYED,
   PER_PAGE_COUNT,

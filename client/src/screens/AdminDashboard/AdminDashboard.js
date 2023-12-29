@@ -1,4 +1,4 @@
-import AdminTemplate from "../../layout/AdminTemplate/AdminTemplate";
+import AdminTemplate from "../../layouts/AdminTemplate/AdminTemplate";
 import { Doughnut, Line } from "react-chartjs-2";
 import styles from "./AdminDashboard.module.css";
 import Icon from "../../assets/icons/Icon";
@@ -15,6 +15,8 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
+import { useEffect, useState } from "react";
+import { getStatistics } from "../../services/actions";
 
 Chart.register(
   CategoryScale,
@@ -28,31 +30,56 @@ Chart.register(
 );
 
 const AdminDashboard = () => {
+  const [statistics, setStatistics] = useState({
+    total: 0,
+    pending: 0,
+    completed: 0,
+    canceled: 0,
+    week: [],
+  });
+
+  const getFormStatistics = async () => {
+    try {
+      const res = await getStatistics();
+      setStatistics(res);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getFormStatistics();
+  }, []);
+
   const cardItems = [
-    { name: "Başvuru Sayısı", value: "100", className: "totalApplications" },
+    {
+      name: "Başvuru Sayısı",
+      value: statistics.total,
+      className: "totalApplications",
+    },
     {
       name: "İptal Edilen Başvuru Sayısı",
-      value: "50",
+      value: statistics.canceled,
       className: "cancelledApplications",
     },
     {
       name: "Bekleyen Başvuru Sayısı",
-      value: "30",
+      value: statistics.pending,
       className: "pendingApplications",
     },
     {
       name: "Çözülen Başvuru Sayısı",
-      value: "20",
+      value: statistics.completed,
       className: "resolvedApplications",
     },
   ];
 
   const lineChartData = {
-    labels: ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs"],
+    labels: statistics.week.map((day) => day.date),
     datasets: [
       {
-        label: "Aylık Başvuru Sayıları",
-        data: [0, 59, 80, 81, 56],
+        label: "Günlük Başvuru Sayıları",
+        data: statistics.week.map((day) => day.count),
         backgroundColor: "green",
         borderColor: "rgb(75, 192, 192)",
       },
@@ -67,7 +94,7 @@ const AdminDashboard = () => {
     ],
     datasets: [
       {
-        data: [300, 50, 100],
+        data: [statistics.completed, statistics.pending, statistics.canceled],
         backgroundColor: [
           "rgba(255, 99, 132, 0.7)",
           "rgba(54, 162, 235, 0.7)",

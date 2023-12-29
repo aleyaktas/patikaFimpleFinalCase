@@ -1,5 +1,5 @@
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { Suspense, lazy } from "react";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Home from "./screens/Home/Home";
 import ApplicationStatus from "./screens/ApplicationStatus/ApplicationStatus";
 import AdminLogin from "./screens/AdminLogin/AdminLogin";
@@ -7,8 +7,8 @@ import AdminApplicationList from "./screens/AdminApplicationList/AdminApplicatio
 import AdminApplicationDetails from "./screens/AdminApplicationDetails/AdminApplicationDetails";
 import ApplicationDetails from "./screens/ApplicationDetails/ApplicationDetails";
 import ApplicationSuccessful from "./screens/ApplicationSuccessful/ApplicationSuccessful";
-import { AuthProvider } from "./context/AuthContext";
-import { LoadingProvider } from "./context/Loading";
+import { AuthProvider } from "./contexts/AuthContext";
+import { LoadingProvider } from "./contexts/Loading";
 import PrivateRoute from "./routes/PrivateRoute";
 import "./App.css";
 

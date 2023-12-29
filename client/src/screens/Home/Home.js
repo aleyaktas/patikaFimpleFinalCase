@@ -1,4 +1,4 @@
-import DefaultTemplate from "../../layout/DefaultTemplate/DefaultTemplate";
+import DefaultTemplate from "../../layouts/DefaultTemplate/DefaultTemplate";
 import Form from "../../components/Form/Form";
 import { createForm } from "../../services/actions";
 import { useNavigate } from "react-router-dom";

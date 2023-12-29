@@ -1,5 +1,5 @@
 import { Navigate } from "react-router-dom";
-import { useAuthContext } from "../context/AuthContext";
+import { useAuthContext } from "../contexts/AuthContext";
 
 const PrivateRoute = ({ Component, ...props }) => {
   const { token } = useAuthContext();

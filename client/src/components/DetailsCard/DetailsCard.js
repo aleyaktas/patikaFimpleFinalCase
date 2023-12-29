@@ -1,13 +1,13 @@
 import Files from "../Files/Files";
 import styles from "./DetailsCard.module.css";
 import DropdownMenu from "../DropdownMenu/DropdownMenu";
-import getStatusInfo from "../../helper/applicationStatus";
+import getStatusInfo from "../../helpers/applicationStatus";
 import { statusOptions } from "../../constants/applicationStatus";
-import { useAuthContext } from "../../context/AuthContext";
+import { useAuthContext } from "../../contexts/AuthContext";
 import Loading from "../Loading/Loading";
-import { useLoadingContext } from "../../context/Loading";
-import getFullName from "../../helper/getFullName";
-import getDate from "../../helper/getDate";
+import { useLoadingContext } from "../../contexts/Loading";
+import getFullName from "../../helpers/getFullName";
+import getDate from "../../helpers/getDate";
 
 const DetailsCard = ({ applicationDetail }) => {
   const { token } = useAuthContext();
