@@ -28,7 +28,7 @@ const FormSchema = new mongoose.Schema({
   },
   code: {
     type: String,
-    default: Math.random().toString(36).substr(2, 8),
+    require: true,
   },
   status: {
     // 0: Pending, 1: Completed, 2: Canceled

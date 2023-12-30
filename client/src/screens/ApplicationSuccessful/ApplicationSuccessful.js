@@ -7,18 +7,24 @@ import { useLocation } from "react-router-dom";
 
 const ApplicationSuccessful = () => {
   const location = useLocation();
-  const detailData = location.state?.data;
+  const detailsData = location.state?.data;
 
   const [copySuccess, setCopySuccess] = useState("");
   const [isCopied, setIsCopied] = useState(false);
 
   const handleCopyFeedback = (message) => {
     setCopySuccess(message);
-    if (message === "Kopyalandı!") setIsCopied(true);
+    if (message === "Kopyalandı!") {
+      setIsCopied(true);
+      setTimeout(() => {
+        setCopySuccess(null);
+        setIsCopied(false);
+      }, 3000);
+    }
   };
 
   const copyToClipboard = () => {
-    navigator.clipboard.writeText(detailData.identifier).then(
+    navigator.clipboard.writeText(detailsData.code).then(
       () => handleCopyFeedback("Kopyalandı!"),
       () => handleCopyFeedback("Kopyalama Başarısız!")
     );
@@ -41,10 +47,11 @@ const ApplicationSuccessful = () => {
                 height="24px"
               />
             </button>
-            {detailData.code}
+            {detailsData.code}
           </div>
+          <p>{copySuccess}</p>
         </div>
-        <DetailsCard applicationDetail={detailData} />
+        {detailsData && <DetailsCard applicationDetails={detailsData} />}
       </div>
     </DefaultTemplate>
   );

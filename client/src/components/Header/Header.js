@@ -8,7 +8,7 @@ const Header = () => {
   const links = [
     {
       name: "Home",
-      href: "/basvuru-olustur",
+      href: "/",
     },
     {
       name: "Başvuru Sorgula",

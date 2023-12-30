@@ -42,7 +42,12 @@ const FileUplaod = ({ register, field, ...props }) => {
 
   return (
     <div {...getRootProps()} className={styles.dropzoneStyle}>
-      <input {...getInputProps()} {...props} register={register} />
+      <input
+        {...getInputProps()}
+        {...props}
+        register={register}
+        accept=".jpeg, .jpg, .png, .pdf"
+      />
       <div className={styles.dropzoneTitleHeader}>
         <Icon name="Upload" className={styles.icon} />
         <p>Bir dosyayı buraya sürükleyip bırakın veya tıklayın</p>

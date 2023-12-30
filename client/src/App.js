@@ -29,7 +29,7 @@ function App() {
 
   const router = createBrowserRouter([
     {
-      path: "/basvuru-olustur",
+      path: "/",
       element: <PublicRoute Component={Home} />,
     },
     {
@@ -59,6 +59,14 @@ function App() {
     {
       path: "/admin/basvuru-listesi/:code",
       element: <PrivateRoute Component={AdminApplicationDetails} />,
+    },
+    {
+      path: "*",
+      element: <PublicRoute Component={Home} />,
+    },
+    {
+      path: "admin/*",
+      element: <PrivateRoute Component={AdminDashboard} />,
     },
   ]);
 

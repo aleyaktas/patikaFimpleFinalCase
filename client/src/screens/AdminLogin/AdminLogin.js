@@ -1,20 +1,14 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
 import styles from "./AdminLogin.module.css";
 import DefaultTemplate from "../../layouts/DefaultTemplate/DefaultTemplate";
 import { useNavigate } from "react-router-dom";
 import { adminLogin } from "../../services/actions";
 import { useAuthContext } from "../../contexts/AuthContext";
-
-const schema = yup.object().shape({
-  username: yup.string().required("Kullanıcı adı zorunlu"),
-  password: yup.string().required("Şifre zorunlu"),
-});
+import { adminLoginSchema } from "../../helpers/yupSchemes";
 
 const AdminLogin = () => {
   const navigate = useNavigate();
-
   const { login } = useAuthContext();
 
   const {
@@ -22,13 +16,17 @@ const AdminLogin = () => {
     handleSubmit,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(adminLoginSchema),
   });
 
   const onSubmit = async (data) => {
-    const res = await adminLogin(data);
-    await login(res.token);
-    navigate("/admin/panel");
+    try {
+      const res = await adminLogin(data);
+      await login(res.token);
+      navigate("/admin/panel");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (

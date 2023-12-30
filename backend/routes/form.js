@@ -5,6 +5,7 @@ const Form = require("../models/Form");
 const Comment = require("../models/Comment");
 const multer = require("multer");
 const fs = require("fs");
+const crypto = require("crypto");
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -36,14 +37,33 @@ router.get("/", auth, async (req, res) => {
     let formsQuery = {};
 
     if (search) {
-      formsQuery = {
-        $or: [
-          { code: { $regex: new RegExp(search, "i") } },
-          { name: { $regex: new RegExp(search, "i") } },
-          { surname: { $regex: new RegExp(search, "i") } },
-          { reason: { $regex: new RegExp(search, "i") } },
-        ],
-      };
+      const nameSurnameParts = search.split(" ");
+
+      if (nameSurnameParts.length === 2) {
+        const [name, surname] = nameSurnameParts;
+
+        formsQuery = {
+          $or: [
+            { code: !isNaN(search) ? parseInt(search) : null },
+            {
+              $and: [
+                { name: { $regex: new RegExp(name, "i") } },
+                { surname: { $regex: new RegExp(surname, "i") } },
+              ],
+            },
+            { reason: { $regex: search, $options: "i" } },
+          ],
+        };
+      } else {
+        formsQuery = {
+          $or: [
+            { code: !isNaN(search) ? parseInt(search) : null },
+            { name: { $regex: new RegExp(search, "i") } },
+            { surname: { $regex: new RegExp(search, "i") } },
+            { reason: { $regex: search, $options: "i" } },
+          ],
+        };
+      }
     }
 
     if (status) {
@@ -54,7 +74,6 @@ router.get("/", auth, async (req, res) => {
       .sort({ createdAt: -1 })
       .skip((page - 1) * 20)
       .limit(20)
-      .populate("comments")
       .exec();
 
     res.json({
@@ -72,7 +91,6 @@ router.get("/", auth, async (req, res) => {
 // @access  Public
 router.post("/", upload.array("files"), async (req, res) => {
   const { name, surname, age, identity, reason, address } = req.body;
-  console.log(req.files);
   try {
     const newForm = new Form({
       name,
@@ -81,6 +99,11 @@ router.post("/", upload.array("files"), async (req, res) => {
       identity,
       reason,
       address,
+      code: crypto
+        .randomBytes(Math.ceil(8 / 2))
+        .toString("hex")
+        .slice(0, 8)
+        .toUpperCase(),
     });
     const form = await newForm.save();
 
@@ -150,7 +173,7 @@ router.get("/statistics", auth, async (req, res) => {
 router.get("/:code", async (req, res) => {
   try {
     const form = await Form.findOne({
-      code: req.params.code,
+      code: req.params.code.toUpperCase(),
     }).populate("comments");
     if (!form) {
       return res.status(404).json({

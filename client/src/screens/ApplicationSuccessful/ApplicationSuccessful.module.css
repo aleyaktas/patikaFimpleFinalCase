@@ -30,7 +30,7 @@
 
 .copyButton {
   display: flex;
-  background-color: none;
+  background-color: transparent;
   outline: none;
   border: none;
   cursor: pointer;

@@ -4,7 +4,7 @@ import TableHeader from "../../components/Table/TableHeader/TableHeader";
 import AdminTemplate from "../../layouts/AdminTemplate/AdminTemplate";
 import styles from "./AdminApplicationList.module.css";
 import DropdownMenu from "../../components/DropdownMenu/DropdownMenu";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import ReactPaginate from "react-paginate";
 import { getForms } from "../../services/actions";
 import { statusOptions } from "../../constants/applicationStatus";
@@ -13,6 +13,7 @@ import {
   PAGE_RANGE_DISPLAYED,
   PER_PAGE_COUNT,
 } from "../../constants/pagination";
+import debouce from "lodash.debounce";
 
 const AdminApplicationList = () => {
   const { setLoading } = useLoadingContext();
@@ -44,6 +45,20 @@ const AdminApplicationList = () => {
     getAllForms();
   }, [pageNumber, searchText, selectedOption]);
 
+  const handleChange = (e) => {
+    setSearchText(e.target.value);
+  };
+
+  const debouncedResults = useMemo(() => {
+    return debouce(handleChange, 300);
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      debouncedResults.cancel();
+    };
+  });
+
   const tableHeader = [
     "Ad-Soyad",
     "Başvuru Nedeni",
@@ -65,7 +80,7 @@ const AdminApplicationList = () => {
               className={styles.searchInput}
               placeholder="Arama Yap..."
               type="search"
-              onChange={(e) => setSearchText(e.target.value)}
+              onChange={debouncedResults}
             />
             <DropdownMenu
               options={statusOptions}

@@ -16,7 +16,7 @@ const TableBody = ({ tableData }) => {
 
   return (
     <>
-      {tableData.length > 0 ? (
+      {tableData?.length > 0 ? (
         tableData.map((item, index) => {
           const { statusText, statusClass } = getStatusInfo(item.status);
           return (

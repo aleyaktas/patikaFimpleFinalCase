@@ -6,19 +6,24 @@ import styles from "./AdminApplicationDetails.module.css";
 import { useEffect, useState } from "react";
 import { getFormByCode, updateForm } from "../../services/actions";
 import { useLoadingContext } from "../../contexts/Loading";
+import { showMessage } from "../../helpers/showMessage";
 
 const AdminApplicationDetails = () => {
   const navigate = useNavigate();
   const { code } = useParams();
   const { setLoading } = useLoadingContext();
 
-  const [detailData, setDetailData] = useState([]);
+  const [detailsData, setDetailsData] = useState([]);
 
   const getFormDetails = async () => {
     try {
       setLoading(true);
       const res = await getFormByCode(code);
-      setDetailData(res);
+      if (res.msg) {
+        showMessage("Böyle bir başvuru bulunamadı");
+        return navigate("/basvuru-sorgula");
+      }
+      setDetailsData(res);
     } catch (error) {
       console.log(error);
     } finally {
@@ -48,9 +53,9 @@ const AdminApplicationDetails = () => {
           </button>
         </div>
         <div className={styles.tableContainer}>
-          {detailData && (
+          {detailsData && (
             <DetailsCard
-              applicationDetail={detailData}
+              applicationDetails={detailsData}
               handleSave={(selectedOption, comment) =>
                 handleSave(selectedOption, comment)
               }

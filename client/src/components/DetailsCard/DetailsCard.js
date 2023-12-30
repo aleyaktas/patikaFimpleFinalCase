@@ -12,7 +12,7 @@ import Files from "../Files/Files";
 import Down from "../../assets/icons/icons/down.svg";
 import Up from "../../assets/icons/icons/up.svg";
 
-const DetailsCard = ({ applicationDetail, handleSave }) => {
+const DetailsCard = ({ applicationDetails, handleSave }) => {
   const { token } = useAuthContext();
   const { loading } = useLoadingContext();
   const [selectedOption, setSelectedOption] = useState();
@@ -20,14 +20,14 @@ const DetailsCard = ({ applicationDetail, handleSave }) => {
   const [showComment, setShowComment] = useState(false);
 
   useEffect(() => {
-    setSelectedOption(applicationDetail.status);
-  }, [applicationDetail.status]);
+    setSelectedOption(applicationDetails.status);
+  }, [applicationDetails.status]);
 
   if (loading) {
     return <Loading />;
   }
 
-  const { statusText, statusClass } = getStatusInfo(applicationDetail?.status);
+  const { statusText, statusClass } = getStatusInfo(applicationDetails?.status);
 
   const handleSelect = (e) => {
     setSelectedOption(e.target.value);
@@ -36,7 +36,9 @@ const DetailsCard = ({ applicationDetail, handleSave }) => {
   return (
     <>
       <div className={styles.headerContainer}>
-        <p className={styles.applicationId}>Başvuru-{applicationDetail.code}</p>
+        <p className={styles.applicationId}>
+          Başvuru-{applicationDetails.code}
+        </p>
         <div className={styles.statusContainer}>
           <div className={styles[statusClass]} />
           {statusText}
@@ -44,28 +46,33 @@ const DetailsCard = ({ applicationDetail, handleSave }) => {
       </div>
       <div className={styles.titleContainer}>
         <p className={styles.name}>
-          {getFullName(applicationDetail.name, applicationDetail.surname)}
+          {getFullName(applicationDetails.name, applicationDetails.surname)}
         </p>
-        <p className={styles.date}>{getDate(applicationDetail.createdAt)}</p>
+        <p className={styles.date}>{getDate(applicationDetails.createdAt)}</p>
       </div>
       <div className={styles.informations}>
-        <p className={styles.information}>Yaş: {applicationDetail.age}</p>
         <p className={styles.information}>
-          Kimlik Numarası: {applicationDetail.identity}
+          <span className={styles.informationText}>Yaş:</span>
+          {applicationDetails.age}
         </p>
         <p className={styles.information}>
-          Adres: {applicationDetail.address}{" "}
+          <span className={styles.informationText}>Kimlik Numarası:</span>
+          {applicationDetails.identity}
+        </p>
+        <p className={styles.information}>
+          <span className={styles.informationText}>Adres:</span>
+          {applicationDetails.address}
         </p>
       </div>
       <div className={styles.bodyInformations}>
         <div>
           <p className={styles.informationText}>Başvuru Nedeni</p>
-          <p>{applicationDetail.reason}</p>
+          <p>{applicationDetails.reason}</p>
         </div>
         <div>
           <p className={styles.informationText}>Ekler</p>
-          {applicationDetail.files ? (
-            <Files files={applicationDetail.files} />
+          {applicationDetails.files?.length > 0 ? (
+            <Files files={applicationDetails.files} />
           ) : (
             <p>Ek Bulunamadı</p>
           )}
@@ -73,7 +80,7 @@ const DetailsCard = ({ applicationDetail, handleSave }) => {
         <div>
           <div className={styles.commentTitle}>
             <p className={styles.informationText}>
-              Cevaplar ({applicationDetail.comments?.length})
+              Cevaplar ({applicationDetails.comments?.length})
             </p>
             <button
               className={styles.showCommentButton}
@@ -83,8 +90,8 @@ const DetailsCard = ({ applicationDetail, handleSave }) => {
             </button>
           </div>
           {showComment &&
-            (applicationDetail.comments.length > 0 ? (
-              applicationDetail.comments.map((item) => (
+            (applicationDetails.comments.length > 0 ? (
+              applicationDetails.comments.map((item) => (
                 <div key={item.commentId}>
                   <p className={styles.commentDate}>
                     {getDateTime(item.createdAt)}
