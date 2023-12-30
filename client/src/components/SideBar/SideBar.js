@@ -1,9 +1,11 @@
 import styles from "./SideBar.module.css";
 import Icon from "../../assets/icons/Icon";
 import { useNavigate } from "react-router-dom";
+import { useAuthContext } from "../../contexts/AuthContext";
 
 const SideBar = ({ sidebarVisible, toggleSidebar }) => {
   const navigate = useNavigate();
+  const { logout } = useAuthContext();
   const menuItems = [
     { name: "Panel", iconName: "Dashboard", href: "/admin/panel" },
     {
@@ -35,7 +37,10 @@ const SideBar = ({ sidebarVisible, toggleSidebar }) => {
           <li
             key={item.name}
             className={styles.sideBarItem}
-            onClick={() => navigate(item.href)}
+            onClick={() => {
+              navigate(item.href);
+              item.iconName === "Logout" && logout();
+            }}
           >
             <Icon name={item.iconName} color="#a8a9af" />
             {item.name}

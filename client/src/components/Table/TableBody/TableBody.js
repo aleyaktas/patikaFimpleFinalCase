@@ -4,7 +4,7 @@ import getStatusInfo from "../../../helpers/applicationStatus";
 import Loading from "../../Loading/Loading";
 import styles from "./TableBody.module.css";
 import getFullName from "../../../helpers/getFullName";
-import getDate from "../../../helpers/getDate";
+import { getDate } from "../../../helpers/getDate";
 
 const TableBody = ({ tableData }) => {
   const { loading } = useLoadingContext();

@@ -3,7 +3,28 @@
   gap: 8px;
 }
 
+.fileContainer {
+  width: 100px;
+  height: 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.fileName {
+  font-size: 14px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: inherit;
+  white-space: nowrap;
+}
+
 .image {
   width: 100px;
   height: 100px;
+  cursor: pointer;
+  border: 1px solid #dee2e6;
+  border-radius: 5px;
+  padding: 2px 4px;
+  object-fit: cover;
 }

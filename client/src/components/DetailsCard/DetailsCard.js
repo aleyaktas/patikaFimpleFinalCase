@@ -6,16 +6,22 @@ import { useAuthContext } from "../../contexts/AuthContext";
 import Loading from "../Loading/Loading";
 import { useLoadingContext } from "../../contexts/Loading";
 import getFullName from "../../helpers/getFullName";
-import getDate from "../../helpers/getDate";
-import { useState } from "react";
+import { getDate, getDateTime } from "../../helpers/getDate";
+import { useEffect, useState } from "react";
+import Files from "../Files/Files";
+import Down from "../../assets/icons/icons/down.svg";
+import Up from "../../assets/icons/icons/up.svg";
 
 const DetailsCard = ({ applicationDetail, handleSave }) => {
   const { token } = useAuthContext();
   const { loading } = useLoadingContext();
-  const [selectedOption, setSelectedOption] = useState(
-    applicationDetail.status
-  );
+  const [selectedOption, setSelectedOption] = useState();
   const [comment, setComment] = useState("");
+  const [showComment, setShowComment] = useState(false);
+
+  useEffect(() => {
+    setSelectedOption(applicationDetail.status);
+  }, [applicationDetail.status]);
 
   if (loading) {
     return <Loading />;
@@ -58,7 +64,37 @@ const DetailsCard = ({ applicationDetail, handleSave }) => {
         </div>
         <div>
           <p className={styles.informationText}>Ekler</p>
-          {/* <Files images={applicationDetail.files} /> */}
+          {applicationDetail.files ? (
+            <Files files={applicationDetail.files} />
+          ) : (
+            <p>Ek Bulunamadı</p>
+          )}
+        </div>
+        <div>
+          <div className={styles.commentTitle}>
+            <p className={styles.informationText}>
+              Cevaplar ({applicationDetail.comments?.length})
+            </p>
+            <button
+              className={styles.showCommentButton}
+              onClick={() => setShowComment(!showComment)}
+            >
+              <img src={showComment ? Up : Down} width="24" height="24" />
+            </button>
+          </div>
+          {showComment &&
+            (applicationDetail.comments.length > 0 ? (
+              applicationDetail.comments.map((item) => (
+                <div key={item.commentId}>
+                  <p className={styles.commentDate}>
+                    {getDateTime(item.createdAt)}
+                  </p>
+                  <p>{item.comment}</p>
+                </div>
+              ))
+            ) : (
+              <p>Henüz Cevaplanmamış</p>
+            ))}
         </div>
       </div>
       {token && (

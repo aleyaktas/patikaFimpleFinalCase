@@ -11,6 +11,8 @@ import { AuthProvider } from "./contexts/AuthContext";
 import { LoadingProvider } from "./contexts/Loading";
 import PrivateRoute from "./routes/PrivateRoute";
 import "./App.css";
+import PublicRoute from "./routes/PublicRoute";
+import { ToastContainer } from "react-toastify";
 
 const AdminDashboard = lazy(() =>
   import("./screens/AdminDashboard/AdminDashboard")
@@ -28,23 +30,23 @@ function App() {
   const router = createBrowserRouter([
     {
       path: "/basvuru-olustur",
-      element: <Home />,
+      element: <PublicRoute Component={Home} />,
     },
     {
       path: "/basvuru-sorgula",
-      element: <ApplicationStatus />,
+      element: <PublicRoute Component={ApplicationStatus} />,
     },
     {
       path: "/basvuru-sorgula/:code",
-      element: <ApplicationDetails />,
+      element: <PublicRoute Component={ApplicationDetails} />,
     },
     {
       path: "/basvuru-basarili",
-      element: <ApplicationSuccessful />,
+      element: <PublicRoute Component={ApplicationSuccessful} />,
     },
     {
       path: "/admin",
-      element: <AdminLogin />,
+      element: <PublicRoute Component={AdminLogin} />,
     },
     {
       path: "/admin/panel",
@@ -63,6 +65,7 @@ function App() {
   return (
     <AuthProvider>
       <LoadingProvider>
+        <ToastContainer newestOnTop={true} />
         <RouterProvider router={router} />
       </LoadingProvider>
     </AuthProvider>

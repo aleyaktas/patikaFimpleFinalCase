@@ -15,11 +15,21 @@ const ImageModal = ({ image, onClose, onPrevious, onNext }) => {
       <div onClick={(e) => e.stopPropagation()}>
         <div className={styles.imageContainer}>
           <button onClick={onPrevious} className={styles.button}>
-            <Icon name="Left" width="24px" className={styles.icon} />
+            <Icon
+              name="Left"
+              width="36px"
+              height="36px"
+              className={styles.icon}
+            />
           </button>
           <img src={image} alt={image} className={styles.image} />
           <button onClick={onNext} className={styles.button}>
-            <Icon name="Right" width="24px" className={styles.icon} />
+            <Icon
+              name="Right"
+              width="36px"
+              height="36px"
+              className={styles.icon}
+            />
           </button>
         </div>
       </div>

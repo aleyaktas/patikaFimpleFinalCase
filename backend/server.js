@@ -27,7 +27,7 @@ app.get("/", (req, res) => {
 // Define Routes
 app.use("/api/auth", require("./routes/auth"));
 app.use("/api/forms", require("./routes/form"));
-app.use("/api/comments", require("./routes/comment"));
+app.use("/api/uploads", express.static("uploads"));
 
 const PORT = process.env.PORT || 5010;
 

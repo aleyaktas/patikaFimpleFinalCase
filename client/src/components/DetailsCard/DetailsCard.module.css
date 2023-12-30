@@ -29,6 +29,21 @@
   margin-left: auto;
 }
 
+.commentTitle,
+.comment {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.showCommentButton {
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
 .headerContainer {
   display: flex;
   align-items: center;
@@ -75,9 +90,15 @@
   padding-top: 10px;
 }
 
-.date {
+.date,
+.commentDate {
   font-size: 14px;
   color: #333;
+}
+
+.commentDate {
+  font-size: 12px;
+  margin-top: 12px;
 }
 
 .titleContainer {

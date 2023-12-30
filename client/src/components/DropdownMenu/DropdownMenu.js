@@ -1,4 +1,3 @@
-import { useState } from "react";
 import styles from "./DropdownMenu.module.css";
 
 const DropdownMenu = ({ options, onSelect, selectedOption }) => {

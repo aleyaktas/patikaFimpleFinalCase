@@ -39,6 +39,12 @@ const FormSchema = new mongoose.Schema({
     type: Array,
     default: [],
   },
+  comments: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Comment",
+    },
+  ],
   createdAt: {
     type: Date,
     default: Date.now,

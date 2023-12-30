@@ -54,6 +54,7 @@ router.get("/", auth, async (req, res) => {
       .sort({ createdAt: -1 })
       .skip((page - 1) * 20)
       .limit(20)
+      .populate("comments")
       .exec();
 
     res.json({
@@ -150,21 +151,13 @@ router.get("/:code", async (req, res) => {
   try {
     const form = await Form.findOne({
       code: req.params.code,
-    });
+    }).populate("comments");
     if (!form) {
       return res.status(404).json({
         msg: "Form bulunamadı",
       });
     }
-
-    const comments = await Comment.find({
-      form: form._id,
-    });
-
-    res.json({
-      ...form.toObject(),
-      comments,
-    });
+    res.json(form);
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Sunucu hatası");
@@ -172,7 +165,7 @@ router.get("/:code", async (req, res) => {
 });
 
 // @route   PUT /api/forms/:code
-// @desc    Update form status by code
+// @desc    Update form status and comments by code
 // @access  Private
 router.put("/:code", auth, async (req, res) => {
   try {
@@ -185,8 +178,19 @@ router.put("/:code", auth, async (req, res) => {
         msg: "Form bulunamadı",
       });
     }
+    const { comment, status } = req.body;
 
-    form.status = req.body.status;
+    if (comment) {
+      const newComment = new Comment({
+        form: form._id,
+        comment,
+      });
+      await newComment.save();
+      form.comments.push(newComment._id);
+    }
+    if (status) {
+      form.status = status;
+    }
     await form.save();
     res.json(form);
   } catch (err) {
