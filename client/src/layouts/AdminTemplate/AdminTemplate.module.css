@@ -27,6 +27,10 @@
   display: none;
 }
 
+.offlineBody {
+  margin-top: 100px;
+}
+
 @media (max-width: 768px) {
   .body {
     padding-left: 0;

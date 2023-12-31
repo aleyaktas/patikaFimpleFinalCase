@@ -86,7 +86,12 @@ const DetailsCard = ({ applicationDetails, handleSave }) => {
               className={styles.showCommentButton}
               onClick={() => setShowComment(!showComment)}
             >
-              <img src={showComment ? Up : Down} width="24" height="24" />
+              <img
+                className={styles.icon}
+                src={showComment ? Up : Down}
+                width="24"
+                height="24"
+              />
             </button>
           </div>
           {showComment &&

@@ -80,7 +80,7 @@
 .pagination li a {
   padding: 5px 10px;
   background-color: var(--background-color);
-  color: black;
+  color: var(--text-color);
   text-decoration: none;
 }
 

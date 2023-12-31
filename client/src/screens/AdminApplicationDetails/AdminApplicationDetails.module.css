@@ -19,7 +19,7 @@
   padding: 4px 8px;
   margin: 16px 0;
   background-color: var(--background-color);
-  color: black;
+  color: var(--text-color);
   border: 1px solid var(--border-color);
   outline: none;
   border-radius: 8px;
@@ -29,6 +29,10 @@
 .backButton:hover {
   background-color: var(--button-hover-color);
   scale: 1.02;
+}
+
+.backIcon {
+  color: var(--text-color);
 }
 
 @media (max-width: 1024px) {

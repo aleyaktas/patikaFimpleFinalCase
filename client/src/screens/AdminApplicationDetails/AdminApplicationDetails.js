@@ -48,7 +48,12 @@ const AdminApplicationDetails = () => {
             className={styles.backButton}
             onClick={() => navigate("/admin/basvuru-listesi")}
           >
-            <Icon name="Left" width="24" height="24" color="black" />
+            <Icon
+              name="Left"
+              width="24"
+              height="24"
+              className={styles.backIcon}
+            />
             Geri
           </button>
         </div>

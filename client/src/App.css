@@ -18,6 +18,8 @@
   --button-hover-color: #f1f1f1e7;
   --pagination-color: #23263787;
   --white-color: #fff;
+  --sidebar-background-color: #232637;
+  --body-background-color: #4a99d3;
 }
 
 * {
@@ -33,7 +35,7 @@ body {
   padding: 0;
   background: linear-gradient(
       359deg,
-      #4a99d3 -24.57%,
+      var(--body-background-color) -24.57%,
       rgba(74, 153, 211, 0.1) 76.31%
     ),
     url("./assets/icons/icons/top-bubble.svg") left top no-repeat,
@@ -50,7 +52,7 @@ body::before {
   z-index: -1;
   background: linear-gradient(
     359deg,
-    #4a99d3 -24.57%,
+    var(--body-background-color) -24.57%,
     rgba(74, 153, 211, 0.2) 76.31%
   );
 }

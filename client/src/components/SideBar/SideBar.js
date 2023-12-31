@@ -17,7 +17,6 @@ const SideBar = ({ sidebarVisible, toggleSidebar }) => {
       iconName: "ApplicationList",
       href: "/admin/basvuru-listesi",
     },
-    { name: "Tema", iconName: "Theme", href: "/admin/dashboard" },
     { name: "Çıkış Yap", iconName: "Logout", href: "/admin" },
   ];
 

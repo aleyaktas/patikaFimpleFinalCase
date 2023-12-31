@@ -2,7 +2,7 @@
   position: fixed;
   width: 300px;
   height: 100%;
-  background-color: var(--secondary-color);
+  background-color: var(--sidebar-background-color);
   padding: 24px 0;
   transition: transform 0.3s ease-in-out;
   z-index: 222;
@@ -47,7 +47,7 @@
 }
 
 .active .sidebarIcon {
-  color: var(--white-color);
+  color: var(--ehite-color);
 }
 
 .showButton {
@@ -61,6 +61,7 @@
   float: right;
   margin-right: 14px;
   cursor: pointer;
+  color: var(--white-color);
 }
 
 @media (max-width: 768px) {
