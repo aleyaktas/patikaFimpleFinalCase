@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import logo from "../../assets/icons/icons/logo.svg";
+import logo from "../../assets/images/logo.png";
 import styles from "./Header.module.css";
 
 const Header = () => {
@@ -21,7 +21,7 @@ const Header = () => {
   ];
   return (
     <div className={styles.container}>
-      <img src={logo} alt="logo" color="#4A99D3" className={styles.logo} />
+      <img src={logo} alt="logo" className={styles.logo} />
       <div className={styles.buttons}>
         {links.map((link, index) => (
           <button

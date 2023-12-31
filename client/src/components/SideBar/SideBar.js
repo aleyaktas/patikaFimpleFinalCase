@@ -1,8 +1,9 @@
+import { useState } from "react";
 import styles from "./SideBar.module.css";
 import Icon from "../../assets/icons/Icon";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useAuthContext } from "../../contexts/AuthContext";
-import { useState } from "react";
+import logo from "../../assets/images/light-logo.png";
 
 const SideBar = ({ sidebarVisible, toggleSidebar }) => {
   const navigate = useNavigate();
@@ -35,14 +36,15 @@ const SideBar = ({ sidebarVisible, toggleSidebar }) => {
     >
       <button
         className={`${styles.closeButton} ${
-          sidebarVisible && styles.showButton
+          sidebarVisible ? styles.showButton : ""
         }`}
         onClick={toggleSidebar}
       >
         <Icon name="Close" color="white" />
       </button>
-      <Icon color="white" name="Logo" width="300px" />
+
       <ul className={styles.sideBarItems}>
+        <img src={logo} alt="logo" className={styles.logo} />
         {menuItems.map((item) => (
           <li
             key={item.name}

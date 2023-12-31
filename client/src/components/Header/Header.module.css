@@ -4,6 +4,7 @@
   display: flex;
   border-bottom: 1px solid var(--border-color);
   justify-content: space-between;
+  align-items: center;
 }
 
 .buttons {
@@ -24,7 +25,8 @@
 }
 
 .logo {
-  width: 120px;
+  width: 150px;
+  height: fit-content;
 }
 
 @media (max-width: 425px) {
@@ -41,7 +43,7 @@
     padding: 2px 4px;
   }
   .logo {
-    width: 70px;
+    width: 80px;
   }
 }
 
@@ -54,8 +56,10 @@
     font-size: 16px;
     padding: 4px 8px;
   }
+}
 
+@media (min-width: 425px) and (max-width: 1024px) {
   .logo {
-    width: 100px;
+    width: 120px;
   }
 }
