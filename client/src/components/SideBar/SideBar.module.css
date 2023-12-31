@@ -2,7 +2,7 @@
   position: fixed;
   width: 300px;
   height: 100%;
-  background-color: #232637;
+  background-color: var(--secondary-color);
   padding: 24px 0;
   transition: transform 0.3s ease-in-out;
   z-index: 222;
@@ -20,8 +20,34 @@
   height: 48px;
   align-items: center;
   gap: 8px;
-  color: #a8a9af;
+  color: var(--sidebar-item);
   cursor: pointer;
+}
+
+.sideBarItem:hover {
+  background-color: var(--border-color);
+  border-radius: 8px;
+  color: var(--text-color);
+}
+
+.sideBarItem:hover .sidebarIcon {
+  color: var(--text-color);
+}
+
+.sidebarIcon {
+  color: var(--sidebar-item);
+  padding-left: 4px;
+}
+
+.active {
+  background-color: transparent;
+  color: var(--white-color);
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+.active .sidebarIcon {
+  color: var(--white-color);
 }
 
 .showButton {

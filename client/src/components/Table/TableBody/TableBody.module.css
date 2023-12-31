@@ -17,7 +17,7 @@
 }
 
 .tableData {
-  color: #333;
+  color: var(--text-color);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -38,19 +38,15 @@
   border-radius: 50%;
 }
 
-.status-1 {
-  background-color: #4caf4fce;
-  color: white;
-}
-
 .status-0 {
-  background-color: #ffeb3bcf;
-  color: #333;
+  background-color: var(--pending-status-color);
 }
 
+.status-1 {
+  background-color: var(--completed-status-color);
+}
 .status-2 {
-  background-color: #2195f3c9;
-  color: white;
+  background-color: var(--canceled-status-color);
 }
 
 .assigneeImage {
@@ -67,14 +63,19 @@
   width: fit-content;
   display: flex;
   align-items: center;
-  background-color: white;
-  border: 1px solid #dadee5;
+  background-color: var(--background-color);
+  border: 1px solid var(--secondary-border-color);
   padding: 8px 12px;
   outline: none;
   border-radius: 10px;
-  color: rgb(31, 31, 31);
+  color: var(--text-color);
   cursor: pointer;
   font-weight: bold;
+}
+
+.detailButton:hover {
+  background-color: var(--button-hover-color);
+  scale: 1.03;
 }
 
 .notFoundMessage {

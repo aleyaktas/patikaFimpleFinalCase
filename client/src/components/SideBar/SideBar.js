@@ -1,11 +1,15 @@
 import styles from "./SideBar.module.css";
 import Icon from "../../assets/icons/Icon";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useAuthContext } from "../../contexts/AuthContext";
+import { useState } from "react";
 
 const SideBar = ({ sidebarVisible, toggleSidebar }) => {
   const navigate = useNavigate();
   const { logout } = useAuthContext();
+  const location = useLocation();
+  const [selectedItem, setSelectedItem] = useState(location.pathname);
+
   const menuItems = [
     { name: "Panel", iconName: "Dashboard", href: "/admin/panel" },
     {
@@ -16,6 +20,13 @@ const SideBar = ({ sidebarVisible, toggleSidebar }) => {
     { name: "Tema", iconName: "Theme", href: "/admin/dashboard" },
     { name: "Çıkış Yap", iconName: "Logout", href: "/admin" },
   ];
+
+  const handleSelect = (item) => {
+    navigate(item.href);
+    item.iconName === "Logout" && logout();
+    setSelectedItem(item.name);
+  };
+
   return (
     <div
       className={`${styles.sideBar}`}
@@ -36,13 +47,12 @@ const SideBar = ({ sidebarVisible, toggleSidebar }) => {
         {menuItems.map((item) => (
           <li
             key={item.name}
-            className={styles.sideBarItem}
-            onClick={() => {
-              navigate(item.href);
-              item.iconName === "Logout" && logout();
-            }}
+            className={`${styles.sideBarItem} ${
+              selectedItem === item.href && styles.active
+            }`}
+            onClick={() => handleSelect(item)}
           >
-            <Icon name={item.iconName} color="#a8a9af" />
+            <Icon name={item.iconName} className={styles.sidebarIcon} />
             {item.name}
           </li>
         ))}

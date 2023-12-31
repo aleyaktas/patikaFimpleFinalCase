@@ -16,15 +16,15 @@
 }
 
 .backButton {
-  background-color: white;
+  background-color: var(--background-color);
   color: black;
-  border: 1px solid #ddd;
+  border: 1px solid var(--border-color);
   margin-right: auto;
 }
 
 .replyButton {
-  background-color: #008c29;
-  color: white;
+  background-color: var(--submit-button-color);
+  color: var(--white-color);
   border: none;
   margin-left: auto;
 }
@@ -40,7 +40,7 @@
   display: flex;
   align-items: center;
   background-color: transparent;
-  border: 1px solid #ddd;
+  border: 1px solid var(--border-color);
   border-radius: 8px;
 }
 
@@ -48,7 +48,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid var(--border-color);
   padding-bottom: 12px;
 }
 .name {
@@ -79,7 +79,7 @@
 }
 
 .informationText {
-  color: #232637;
+  color: var(--secondary-color);
   font-weight: 600;
   font-size: 14px;
 }
@@ -94,7 +94,7 @@
 .date,
 .commentDate {
   font-size: 14px;
-  color: #333;
+  color: var(--text-color);
 }
 
 .commentDate {
@@ -115,24 +115,24 @@
   flex-direction: column;
   padding: 20px;
   gap: 20px;
-  background-color: #fcfcfc;
-  border: 1px solid #e7e7e7;
+  background-color: var(--secondary-background-color);
+  border: 1px solid var(--border-color);
   margin: 20px 0px;
   border-radius: 4px;
 }
 
 .messageText {
   width: 100%;
-  background-color: #ffffff;
+  background-color: var(--background-color);
   border-radius: 4px;
   height: 100px;
-  border: 1px solid #e7e7e7;
+  border: 1px solid var(--border-color);
   padding: 8px;
   resize: none;
 }
 
 .select {
-  border: 1px solid #ddd;
+  border: 1px solid var(--border-color);
   box-sizing: border-box;
   border-radius: 4px;
   padding: 4px 16px;
@@ -161,28 +161,19 @@
 
 .status-0,
 .status-1,
-.status-2,
-.status-3 {
+.status-2 {
   width: 12px;
   height: 12px;
   border-radius: 50%;
 }
 
 .status-0 {
-  background-color: #ffeb3bcf;
-  color: #333;
+  background-color: var(--pending-status-color);
 }
 
 .status-1 {
-  background-color: #2195f3c9;
-  color: white;
+  background-color: var(--completed-status-color);
 }
 .status-2 {
-  background-color: #4caf4fce;
-  color: white;
-}
-
-.status-3 {
-  background-color: #f44336bb;
-  color: white;
+  background-color: var(--canceled-status-color);
 }

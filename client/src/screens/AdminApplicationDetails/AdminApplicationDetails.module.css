@@ -6,7 +6,7 @@
 
 .tableContainer {
   padding: 20px 40px;
-  background-color: white;
+  background-color: var(--background-color);
   border-radius: 10px;
   height: auto;
   overflow: scroll;
@@ -18,12 +18,17 @@
   gap: 8px;
   padding: 4px 8px;
   margin: 16px 0;
-  background-color: white;
+  background-color: var(--background-color);
   color: black;
-  border: 1px solid #ddd;
+  border: 1px solid var(--border-color);
   outline: none;
   border-radius: 8px;
   cursor: pointer;
+}
+
+.backButton:hover {
+  background-color: var(--button-hover-color);
+  scale: 1.02;
 }
 
 @media (max-width: 1024px) {

@@ -1,11 +1,23 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
 
 :root {
-  --primary-color: #3498db;
-  --secondary-color: #2ecc71;
-  --accent-color: #e74c3c;
+  --primary-color: #4a99d3;
+  --secondary-color: #232637;
+  --accent-color: #ff0000;
   --text-color: #333;
   --background-color: #fff;
+  --secondary-background-color: #fcfcfc;
+  --submit-button-color: #75aa16;
+  --pending-status-color: #ffeb3bcf;
+  --completed-status-color: #4caf4fce;
+  --canceled-status-color: #f44336bb;
+  --border-color: #e7e7e7e7;
+  --secondary-border-color: #dadee5;
+  --box-shadow-color: rgba(0, 0, 0, 0.05);
+  --sidebar-item: #a8a9af;
+  --button-hover-color: #f1f1f1e7;
+  --pagination-color: #23263787;
+  --white-color: #fff;
 }
 
 * {

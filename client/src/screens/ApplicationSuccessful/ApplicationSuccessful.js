@@ -1,9 +1,9 @@
 import { useState } from "react";
+import { useLocation } from "react-router-dom";
 import Icon from "../../assets/icons/Icon";
 import DetailsCard from "../../components/DetailsCard/DetailsCard";
 import DefaultTemplate from "../../layouts/DefaultTemplate/DefaultTemplate";
 import styles from "./ApplicationSuccessful.module.css";
-import { useLocation } from "react-router-dom";
 
 const ApplicationSuccessful = () => {
   const location = useLocation();
