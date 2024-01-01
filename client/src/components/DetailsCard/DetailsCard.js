@@ -43,7 +43,8 @@ const DetailsCard = ({ applicationDetails, handleSave }) => {
       </div>
       <div className={styles.titleContainer}>
         <p className={styles.name}>
-          {getFullName(applicationDetails.name, applicationDetails.surname)}
+          {!loading &&
+            getFullName(applicationDetails.name, applicationDetails.surname)}
         </p>
         <p className={styles.date}>{getDate(applicationDetails.createdAt)}</p>
       </div>

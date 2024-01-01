@@ -33,10 +33,10 @@ const AdminApplicationDetails = () => {
 
   const handleSave = async (selectedOption, comment) => {
     try {
+      setLoading(true);
       if (selectedOption === detailsData.status && !comment) {
         return;
       }
-      setLoading(true);
       const res = await updateForm(code, selectedOption, comment);
       if (res.msg) {
         return showMessage(res.msg);

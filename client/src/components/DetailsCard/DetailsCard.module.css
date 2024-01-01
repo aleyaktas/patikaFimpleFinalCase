@@ -198,3 +198,9 @@
   inset: 0;
   margin-left: 300px;
 }
+
+@media (max-width: 768px) {
+  .loadingContainer {
+    margin-left: 0px;
+  }
+}
