@@ -30,6 +30,10 @@ const send = async (endpoint, params, method, data, isFormData) => {
   });
 
   const result = await response.json();
+  if (response.status === 401) {
+    localStorage.removeItem("token");
+    return window.location.reload();
+  }
   return result;
 };
 
