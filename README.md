@@ -93,6 +93,7 @@ If you want to run project with local backend
   cd ..
   cd backend
   yarn install
+  yarn start
 ```
 
 ## Info before running the project with local backend 
