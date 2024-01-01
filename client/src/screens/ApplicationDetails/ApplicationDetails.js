@@ -6,11 +6,12 @@ import styles from "./ApplicationDetails.module.css";
 import { getFormByCode } from "../../services/actions";
 import { showMessage } from "../../helpers/showMessage";
 import { useLoadingContext } from "../../contexts/Loading";
+import Loading from "../../components/Loading/Loading";
 
 const ApplicationDetails = () => {
   const { code } = useParams();
   const navigate = useNavigate();
-  const { setLoading } = useLoadingContext();
+  const { setLoading, loading } = useLoadingContext();
 
   const [detailsData, setDetailsData] = useState();
 
@@ -33,6 +34,14 @@ const ApplicationDetails = () => {
   useEffect(() => {
     getDetailData();
   }, []);
+
+  if (loading) {
+    return (
+      <div className={styles.loadingContainer}>
+        <Loading />
+      </div>
+    );
+  }
 
   return (
     <DefaultTemplate>

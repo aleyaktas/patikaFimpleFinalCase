@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { adminLogin } from "../../services/actions";
 import { useAuthContext } from "../../contexts/AuthContext";
 import { adminLoginSchema } from "../../helpers/yupSchemes";
+import { showMessage } from "../../helpers/showMessage";
 
 const AdminLogin = () => {
   const navigate = useNavigate();
@@ -22,8 +23,11 @@ const AdminLogin = () => {
   const onSubmit = async (data) => {
     try {
       const res = await adminLogin(data);
-      await login(res.token);
+      if (res.msg) {
+        return showMessage(res.msg, "error");
+      }
       navigate("/admin/panel");
+      await login(res.token);
     } catch (error) {
       console.log(error);
     }

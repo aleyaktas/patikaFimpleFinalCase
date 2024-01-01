@@ -1,10 +1,8 @@
-import { Suspense, lazy } from "react";
+import { lazy } from "react";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Home from "./screens/Home/Home";
 import ApplicationStatus from "./screens/ApplicationStatus/ApplicationStatus";
 import AdminLogin from "./screens/AdminLogin/AdminLogin";
-import AdminApplicationList from "./screens/AdminApplicationList/AdminApplicationList";
-import AdminApplicationDetails from "./screens/AdminApplicationDetails/AdminApplicationDetails";
 import ApplicationDetails from "./screens/ApplicationDetails/ApplicationDetails";
 import ApplicationSuccessful from "./screens/ApplicationSuccessful/ApplicationSuccessful";
 import { AuthProvider } from "./contexts/AuthContext";
@@ -17,16 +15,14 @@ import { ToastContainer } from "react-toastify";
 const AdminDashboard = lazy(() =>
   import("./screens/AdminDashboard/AdminDashboard")
 );
+const AdminApplicationList = lazy(() =>
+  import("./screens/AdminApplicationList/AdminApplicationList")
+);
+const AdminApplicationDetails = lazy(() =>
+  import("./screens/AdminApplicationDetails/AdminApplicationDetails")
+);
 
 function App() {
-  const CustomSuspenseWrapper = () => {
-    return (
-      <Suspense fallback={<p>Bekleniyor...</p>}>
-        <AdminDashboard />
-      </Suspense>
-    );
-  };
-
   const router = createBrowserRouter([
     {
       path: "/",
@@ -50,7 +46,7 @@ function App() {
     },
     {
       path: "/admin/panel",
-      element: <PrivateRoute Component={CustomSuspenseWrapper} />,
+      element: <PrivateRoute Component={AdminDashboard} />,
     },
     {
       path: "/admin/basvuru-listesi",
@@ -65,7 +61,7 @@ function App() {
       element: <PublicRoute Component={Home} />,
     },
     {
-      path: "admin/*",
+      path: "/admin/*",
       element: <PrivateRoute Component={AdminDashboard} />,
     },
   ]);

@@ -24,9 +24,13 @@
 
 .replyButton {
   background-color: var(--submit-button-color);
-  color: var(--text-color);
+  color: var(--white-color);
   border: none;
   margin-left: auto;
+}
+
+.replyButton:hover {
+  scale: 1.03;
 }
 
 .commentTitle,
@@ -187,4 +191,10 @@
 
 .icon {
   color: var(--text-color);
+}
+
+.loadingContainer {
+  position: absolute;
+  inset: 0;
+  margin-left: 300px;
 }

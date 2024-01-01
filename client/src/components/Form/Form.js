@@ -3,6 +3,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import styles from "./Form.module.css";
 import FileUpload from "../../components/FileUpload/FileUpload";
 import { createFormSchema } from "../../helpers/yupSchemes";
+import { useLoadingContext } from "../../contexts/Loading";
+import Loading from "../Loading/Loading";
 
 const Form = ({ formSubmit }) => {
   const {
@@ -14,9 +16,15 @@ const Form = ({ formSubmit }) => {
     resolver: yupResolver(createFormSchema),
   });
 
+  const { loading } = useLoadingContext();
+
   const onSubmit = (data) => {
     formSubmit(data);
   };
+
+  if (loading) {
+    return <Loading />;
+  }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.formElements}>

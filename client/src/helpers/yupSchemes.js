@@ -48,3 +48,13 @@ export const adminLoginSchema = Yup.object().shape({
   username: Yup.string().required("Kullanıcı adı zorunlu"),
   password: Yup.string().required("Şifre zorunlu"),
 });
+
+export const applicationStatusSchema = Yup.object().shape({
+  code: Yup.string()
+    .required("Kod zorunlu")
+    .test(
+      "lenght",
+      "Başvuru kodu 8 karakter olmalı",
+      (code) => code.length === 8
+    ),
+});

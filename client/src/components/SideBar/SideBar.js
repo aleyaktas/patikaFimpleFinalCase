@@ -35,6 +35,7 @@ const SideBar = ({ sidebarVisible, toggleSidebar }) => {
       }}
     >
       <button
+        id="closeButton"
         className={`${styles.closeButton} ${
           sidebarVisible ? styles.showButton : ""
         }`}

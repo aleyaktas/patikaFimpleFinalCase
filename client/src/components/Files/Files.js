@@ -3,6 +3,7 @@ import styles from "./Files.module.css";
 import ImageModal from "../ImageModal/ImageModal";
 import { isImage } from "../../helpers/imageControl";
 import defaultFile from "../../assets/icons/icons/default-file.svg";
+import { BASE_URL } from "../../services";
 
 const Files = ({ files }) => {
   const [selectedImageIndex, setSelectedImageIndex] = useState(null);
@@ -57,7 +58,7 @@ const Files = ({ files }) => {
         <div key={index} className={styles.fileContainer}>
           <img
             key={index}
-            src={`http://localhost:5010/api/${image}`}
+            src={`${BASE_URL}/${image}`}
             alt={image}
             onClick={() => openModal(index)}
             className={styles.image}
@@ -70,9 +71,7 @@ const Files = ({ files }) => {
           <img
             src={defaultFile}
             alt={document}
-            onClick={() =>
-              window.open(`http://localhost:5010/api/${document}`, "_blank")
-            }
+            onClick={() => window.open(`${BASE_URL}/${document}`, "_blank")}
             className={styles.image}
           />
           <p className={styles.fileName}>{getFileName(document)}</p>
@@ -80,7 +79,7 @@ const Files = ({ files }) => {
       ))}
       {isModalOpen && (
         <ImageModal
-          image={`http://localhost:5010/api/${images[selectedImageIndex]}`}
+          image={`${BASE_URL}/${images[selectedImageIndex]}`}
           onClose={closeModal}
           onPrevious={gotoPrevious}
           onNext={gotoNext}

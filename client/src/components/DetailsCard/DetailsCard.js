@@ -23,10 +23,6 @@ const DetailsCard = ({ applicationDetails, handleSave }) => {
     setSelectedOption(applicationDetails.status);
   }, [applicationDetails.status]);
 
-  if (loading) {
-    return <Loading />;
-  }
-
   const { statusText, statusClass } = getStatusInfo(applicationDetails?.status);
 
   const handleSelect = (e) => {
@@ -118,6 +114,7 @@ const DetailsCard = ({ applicationDetails, handleSave }) => {
               className={styles.messageText}
               placeholder="Mesajınızı Yazınız..."
               onChange={(e) => setComment(e.target.value)}
+              value={comment}
             />
           </div>
           <DropdownMenu
@@ -127,10 +124,19 @@ const DetailsCard = ({ applicationDetails, handleSave }) => {
           />
           <button
             className={styles.replyButton}
-            onClick={() => handleSave(selectedOption, comment)}
+            onClick={() => {
+              handleSave(selectedOption, comment);
+              setComment("");
+            }}
+            disabled={loading}
           >
             Kaydet
           </button>
+        </div>
+      )}
+      {loading && (
+        <div className={styles.loadingContainer}>
+          <Loading />
         </div>
       )}
     </>

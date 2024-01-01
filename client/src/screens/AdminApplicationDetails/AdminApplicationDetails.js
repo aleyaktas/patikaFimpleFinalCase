@@ -21,7 +21,7 @@ const AdminApplicationDetails = () => {
       const res = await getFormByCode(code);
       if (res.msg) {
         showMessage("Böyle bir başvuru bulunamadı");
-        return navigate("/basvuru-sorgula");
+        return navigate("/admin/basvuru-listesi");
       }
       setDetailsData(res);
     } catch (error) {
@@ -32,8 +32,22 @@ const AdminApplicationDetails = () => {
   };
 
   const handleSave = async (selectedOption, comment) => {
-    await updateForm(code, selectedOption, comment);
-    getFormDetails();
+    try {
+      if (selectedOption === detailsData.status && !comment) {
+        return;
+      }
+      setLoading(true);
+      const res = await updateForm(code, selectedOption, comment);
+      if (res.msg) {
+        return showMessage(res.msg);
+      }
+      showMessage("Form başarıyla güncellendi!", "success");
+      setDetailsData(res);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   useEffect(() => {

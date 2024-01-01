@@ -1,6 +1,7 @@
+export const BASE_URL = "https://api-ticketly.aleynaaktas.com/api";
+
 const options = {
-  baseUrl: "http://localhost:5010",
-  rootPath: "/api",
+  baseUrl: BASE_URL,
 };
 
 const POST = "POST";
@@ -9,7 +10,7 @@ const GET = "GET";
 const DELETE = "DELETE";
 
 const send = async (endpoint, params, method, data, isFormData) => {
-  let uri = options.baseUrl + options.rootPath + endpoint + params;
+  let uri = options.baseUrl + endpoint + params;
   var formBody = [];
   for (var property in data) {
     var encodedKey = encodeURIComponent(property);

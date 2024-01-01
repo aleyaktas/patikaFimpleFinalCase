@@ -94,7 +94,7 @@ const AdminDashboard = () => {
     ],
     datasets: [
       {
-        data: [statistics.completed, statistics.pending, statistics.canceled],
+        data: [statistics?.completed, statistics.pending, statistics.canceled],
         backgroundColor: [
           "rgba(255, 99, 132, 0.7)",
           "rgba(54, 162, 235, 0.7)",
@@ -117,8 +117,11 @@ const AdminDashboard = () => {
           <span>Panel</span>
         </div>
         <div className={styles.cardContainer}>
-          {cardItems.map((item) => (
-            <div className={`${styles.card} ${styles[item.className]}`}>
+          {cardItems.map((item, index) => (
+            <div
+              key={index}
+              className={`${styles.card} ${styles[item.className]}`}
+            >
               <p className={styles.cardTitle}>{item.name}</p>
               <p className={styles.cardValue}>{item.value}</p>
               <img src={layer} alt="layer" />

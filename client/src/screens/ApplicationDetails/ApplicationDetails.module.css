@@ -8,3 +8,10 @@
   gap: 16px;
   margin-top: 50px;
 }
+
+.loadingContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+}
