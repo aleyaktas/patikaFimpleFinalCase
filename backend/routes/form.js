@@ -156,7 +156,7 @@ router.get("/statistics", auth, async (req, res) => {
       total: forms.length,
       pending: forms.filter((form) => form.status === 0).length,
       completed: forms.filter((form) => form.status === 1).length,
-      canceled: forms.filter((form) => form.status === -1).length,
+      canceled: forms.filter((form) => form.status === 2).length,
       week: weekStatistics,
     };
 

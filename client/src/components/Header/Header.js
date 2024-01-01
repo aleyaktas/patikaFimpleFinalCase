@@ -1,9 +1,12 @@
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import logo from "../../assets/images/logo.png";
 import styles from "./Header.module.css";
 
 const Header = () => {
   const navigate = useNavigate();
+  const { pathname } = useLocation();
+  const [selectedItem, setSelectedItem] = useState(pathname);
 
   const links = [
     {
@@ -19,6 +22,12 @@ const Header = () => {
       href: "/admin",
     },
   ];
+
+  const handleSelect = (href) => {
+    setSelectedItem(href);
+    navigate(href);
+  };
+
   return (
     <div className={styles.container}>
       <img
@@ -30,8 +39,10 @@ const Header = () => {
       <div className={styles.buttons}>
         {links.map((link, index) => (
           <button
-            onClick={() => navigate(link.href)}
-            className={styles.button}
+            onClick={() => handleSelect(link.href)}
+            className={`${styles.button} ${
+              selectedItem === link.href && styles.active
+            }`}
             key={index}
           >
             {link.name}
