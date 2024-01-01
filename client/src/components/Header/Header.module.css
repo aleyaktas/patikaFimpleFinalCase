@@ -27,6 +27,7 @@
 .logo {
   width: 150px;
   height: fit-content;
+  cursor: pointer;
 }
 
 @media (max-width: 425px) {

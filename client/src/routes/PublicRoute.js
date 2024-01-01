@@ -1,4 +1,5 @@
 import { Navigate } from "react-router-dom";
+import PropTypes from "prop-types";
 import { useAuthContext } from "../contexts/AuthContext";
 import { showMessage } from "../helpers/showMessage";
 
@@ -13,6 +14,10 @@ const PublicRoute = ({ Component, ...props }) => {
   }
 
   return <Component {...props} />;
+};
+
+PublicRoute.propTypes = {
+  Component: PropTypes.elementType.isRequired,
 };
 
 export default PublicRoute;

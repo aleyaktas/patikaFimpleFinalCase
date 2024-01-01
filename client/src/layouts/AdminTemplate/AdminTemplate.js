@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 import SideBar from "../../components/SideBar/SideBar";
 import styles from "./AdminTemplate.module.css";
 import Icon from "../../assets/icons/Icon";
@@ -33,6 +34,10 @@ const AdminTemplate = ({ children }) => {
       </div>
     </div>
   );
+};
+
+AdminTemplate.propTypes = {
+  children: PropTypes.node.isRequired,
 };
 
 export default AdminTemplate;

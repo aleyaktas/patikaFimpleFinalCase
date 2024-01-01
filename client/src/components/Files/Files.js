@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 import styles from "./Files.module.css";
 import ImageModal from "../ImageModal/ImageModal";
 import { isImage } from "../../helpers/imageControl";
@@ -87,6 +88,10 @@ const Files = ({ files }) => {
       )}
     </div>
   );
+};
+
+Files.propTypes = {
+  files: PropTypes.array.isRequired,
 };
 
 export default Files;

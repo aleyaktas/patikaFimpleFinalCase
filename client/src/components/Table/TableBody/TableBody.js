@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import PropTypes from "prop-types";
 import { useLoadingContext } from "../../../contexts/Loading";
 import getStatusInfo from "../../../helpers/applicationStatus";
 import Loading from "../../Loading/Loading";
@@ -51,6 +52,10 @@ const TableBody = ({ tableData }) => {
       )}
     </>
   );
+};
+
+TableBody.propTypes = {
+  tableData: PropTypes.array.isRequired,
 };
 
 export default TableBody;

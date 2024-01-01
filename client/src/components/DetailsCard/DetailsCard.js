@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import styles from "./DetailsCard.module.css";
 import DropdownMenu from "../DropdownMenu/DropdownMenu";
 import getStatusInfo from "../../helpers/applicationStatus";
@@ -141,6 +142,11 @@ const DetailsCard = ({ applicationDetails, handleSave }) => {
       )}
     </>
   );
+};
+
+DetailsCard.propTypes = {
+  applicationDetails: PropTypes.object.isRequired,
+  handleSave: PropTypes.func.isRequired,
 };
 
 export default DetailsCard;

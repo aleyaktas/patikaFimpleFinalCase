@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import Icon from "../../assets/icons/Icon";
 import styles from "./ImageModal.module.css";
 
@@ -35,6 +36,13 @@ const ImageModal = ({ image, onClose, onPrevious, onNext }) => {
       </div>
     </div>
   );
+};
+
+ImageModal.propTypes = {
+  image: PropTypes.string.isRequired,
+  onClose: PropTypes.func.isRequired,
+  onPrevious: PropTypes.func.isRequired,
+  onNext: PropTypes.func.isRequired,
 };
 
 export default ImageModal;

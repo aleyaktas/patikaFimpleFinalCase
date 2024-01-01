@@ -1,7 +1,8 @@
 import { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import PropTypes from "prop-types";
 import styles from "./SideBar.module.css";
 import Icon from "../../assets/icons/Icon";
-import { useLocation, useNavigate } from "react-router-dom";
 import { useAuthContext } from "../../contexts/AuthContext";
 import logo from "../../assets/images/light-logo.png";
 
@@ -61,6 +62,11 @@ const SideBar = ({ sidebarVisible, toggleSidebar }) => {
       </ul>
     </div>
   );
+};
+
+SideBar.propTypes = {
+  sidebarVisible: PropTypes.bool.isRequired,
+  toggleSidebar: PropTypes.func.isRequired,
 };
 
 export default SideBar;

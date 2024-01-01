@@ -1,10 +1,11 @@
 import { useCallback, useEffect, useState } from "react";
 import { useDropzone } from "react-dropzone";
+import PropTypes from "prop-types";
 import styles from "./FileUpload.module.css";
 import Icon from "../../assets/icons/Icon";
 import defaultFileIcon from "../../assets/icons/icons/default-file.svg";
 
-const FileUplaod = ({ register, field, ...props }) => {
+const FileUplaod = ({ field, ...props }) => {
   const [files, setFiles] = useState([]);
   const [previewUrls, setPreviewUrls] = useState({});
 
@@ -30,9 +31,6 @@ const FileUplaod = ({ register, field, ...props }) => {
 
   const { getRootProps, getInputProps } = useDropzone({
     onDrop,
-    // maxSize: 5242880,
-    // accept: "image/*",
-    // maxFiles: 3,
   });
 
   const removeFile = (e, fileName) => {
@@ -42,12 +40,7 @@ const FileUplaod = ({ register, field, ...props }) => {
 
   return (
     <div {...getRootProps()} className={styles.dropzoneStyle}>
-      <input
-        {...getInputProps()}
-        {...props}
-        register={register}
-        accept=".jpeg, .jpg, .png, .pdf"
-      />
+      <input {...getInputProps()} {...props} accept=".jpeg, .jpg, .png, .pdf" />
       <div className={styles.dropzoneTitleHeader}>
         <Icon name="Upload" className={styles.icon} />
         <p>Bir dosyayı buraya sürükleyip bırakın veya tıklayın</p>
@@ -76,6 +69,10 @@ const FileUplaod = ({ register, field, ...props }) => {
       </ul>
     </div>
   );
+};
+
+FileUplaod.propTypes = {
+  field: PropTypes.object.isRequired,
 };
 
 export default FileUplaod;

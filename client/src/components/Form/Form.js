@@ -1,5 +1,6 @@
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import PropTypes from "prop-types";
 import styles from "./Form.module.css";
 import FileUpload from "../../components/FileUpload/FileUpload";
 import { createFormSchema } from "../../helpers/yupSchemes";
@@ -125,6 +126,10 @@ const Form = ({ formSubmit }) => {
       </button>
     </form>
   );
+};
+
+Form.propTypes = {
+  formSubmit: PropTypes.func.isRequired,
 };
 
 export default Form;

@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import styles from "./DropdownMenu.module.css";
 
 const DropdownMenu = ({ options, onSelect, selectedOption }) => {
@@ -13,6 +14,12 @@ const DropdownMenu = ({ options, onSelect, selectedOption }) => {
       </select>
     </div>
   );
+};
+
+DropdownMenu.propTypes = {
+  options: PropTypes.array.isRequired,
+  onSelect: PropTypes.func.isRequired,
+  selectedOption: PropTypes.string,
 };
 
 export default DropdownMenu;

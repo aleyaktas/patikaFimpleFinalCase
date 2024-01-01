@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import styles from "./TableHeader.module.css";
 
 const TableHeader = ({ tableHeader }) => {
@@ -8,6 +9,10 @@ const TableHeader = ({ tableHeader }) => {
       ))}
     </tr>
   );
+};
+
+TableHeader.propTypes = {
+  tableHeader: PropTypes.array.isRequired,
 };
 
 export default TableHeader;

@@ -21,7 +21,12 @@ const Header = () => {
   ];
   return (
     <div className={styles.container}>
-      <img src={logo} alt="logo" className={styles.logo} />
+      <img
+        src={logo}
+        alt="logo"
+        className={styles.logo}
+        onClick={() => navigate("/")}
+      />
       <div className={styles.buttons}>
         {links.map((link, index) => (
           <button

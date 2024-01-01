@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { ReactComponent as Logo } from "./icons/logo.svg";
 import { ReactComponent as Dashboard } from "./icons/home.svg";
 import { ReactComponent as ApplicationList } from "./icons/application-list.svg";
@@ -46,4 +47,13 @@ const Icon = ({ name, width = "24px", height = "24px", color, className }) => {
     />
   );
 };
+
+Icon.propTypes = {
+  name: PropTypes.string.isRequired,
+  width: PropTypes.string,
+  height: PropTypes.string,
+  color: PropTypes.string,
+  className: PropTypes.string,
+};
+
 export default Icon;

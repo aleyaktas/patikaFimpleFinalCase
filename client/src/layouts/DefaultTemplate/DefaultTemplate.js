@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 import Header from "../../components/Header/Header";
 import styles from "./DefaultTemplate.module.css";
 import OfflineServiceWorker from "../../components/OfflineServiceWorker/OfflineServiceWorker";
@@ -18,6 +19,10 @@ const DefaultTemplate = ({ children }) => {
       </div>
     </div>
   );
+};
+
+DefaultTemplate.propTypes = {
+  children: PropTypes.node.isRequired,
 };
 
 export default DefaultTemplate;
