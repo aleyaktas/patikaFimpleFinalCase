@@ -18,7 +18,7 @@ const ApplicationStatus = () => {
   });
 
   const onSubmit = async (data) => {
-    navigate(`/basvuru-sorgula/${data.code}`);
+    navigate(`/basvuru/${data.code}`);
   };
 
   return (

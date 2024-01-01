@@ -33,7 +33,7 @@ function App() {
       element: <PublicRoute Component={ApplicationStatus} />,
     },
     {
-      path: "/basvuru-sorgula/:code",
+      path: "/basvuru/:code",
       element: <PublicRoute Component={ApplicationDetails} />,
     },
     {
@@ -53,7 +53,7 @@ function App() {
       element: <PrivateRoute Component={AdminApplicationList} />,
     },
     {
-      path: "/admin/basvuru-listesi/:code",
+      path: "/admin/basvuru/:code",
       element: <PrivateRoute Component={AdminApplicationDetails} />,
     },
     {

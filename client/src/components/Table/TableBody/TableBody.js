@@ -36,9 +36,7 @@ const TableBody = ({ tableData }) => {
               </td>
               <td className={styles.button}>
                 <button
-                  onClick={() =>
-                    navigate(`/admin/basvuru-listesi/${item.code}`)
-                  }
+                  onClick={() => navigate(`/admin/basvuru/${item.code}`)}
                   className={styles.detailButton}
                 >
                   Detay
