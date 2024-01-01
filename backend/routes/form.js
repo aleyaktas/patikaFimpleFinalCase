@@ -194,7 +194,7 @@ router.put("/:code", auth, async (req, res) => {
   try {
     const form = await Form.findOne({
       code: req.params.code,
-    });
+    }).populate("comments");
 
     if (!form) {
       return res.status(404).json({

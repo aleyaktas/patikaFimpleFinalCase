@@ -68,7 +68,7 @@
   border: 1px solid var(--secondary-border-color);
   padding: 8px 12px;
   outline: none;
-  border-radius: 10px;
+  border-radius: 8px;
   color: var(--text-color);
   cursor: pointer;
   font-weight: bold;

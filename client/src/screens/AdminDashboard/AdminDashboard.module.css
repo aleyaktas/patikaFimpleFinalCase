@@ -27,7 +27,7 @@
   height: 200px;
   color: var(--white-color);
   position: relative;
-  border-radius: 10px;
+  border-radius: 8px;
 }
 
 .card img {
@@ -73,7 +73,7 @@
   padding: 50px;
   background-color: rgba(255, 255, 255, 0.935);
   padding-right: 10px;
-  border-radius: 10px;
+  border-radius: 8px;
 }
 
 .cardLineChart {

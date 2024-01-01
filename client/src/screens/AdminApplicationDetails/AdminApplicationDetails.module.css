@@ -7,7 +7,7 @@
 .tableContainer {
   padding: 20px 40px;
   background-color: var(--background-color);
-  border-radius: 10px;
+  border-radius: 8px;
   height: auto;
   overflow: scroll;
 }

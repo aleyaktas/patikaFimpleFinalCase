@@ -50,15 +50,15 @@ const DetailsCard = ({ applicationDetails, handleSave }) => {
       </div>
       <div className={styles.informations}>
         <p className={styles.information}>
-          <span className={styles.informationText}>Yaş:</span>
+          <span className={styles.informationText}>Yaş: </span>
           {applicationDetails.age}
         </p>
         <p className={styles.information}>
-          <span className={styles.informationText}>Kimlik Numarası:</span>
+          <span className={styles.informationText}>Kimlik Numarası: </span>
           {applicationDetails.identity}
         </p>
         <p className={styles.information}>
-          <span className={styles.informationText}>Adres:</span>
+          <span className={styles.informationText}>Adres: </span>
           {applicationDetails.address}
         </p>
       </div>
