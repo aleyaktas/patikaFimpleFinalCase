@@ -1,19 +1,19 @@
-const mongoose = require('mongoose');
-require('./Form');
+const mongoose = require("mongoose");
+require("./Form");
 
 const CommentSchema = new mongoose.Schema({
   form: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Form',
+    ref: "Form",
   },
   comment: {
     type: String,
     require: true,
   },
-  createAt: {
+  createdAt: {
     type: Date,
     default: Date.now,
   },
 });
 
-module.exports = Comment = mongoose.model('Comment', CommentSchema);
+module.exports = Comment = mongoose.model("Comment", CommentSchema);

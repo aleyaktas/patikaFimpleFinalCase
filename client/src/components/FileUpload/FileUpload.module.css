@@ -5,7 +5,7 @@
   align-items: center;
   padding: 20px;
   border-width: 2px;
-  border-radius: 8px;
+  border-radius: 4px;
   border-color: rgb(130 182 224);
   border-style: dashed;
   background-color: var(--secondary-background-color);
