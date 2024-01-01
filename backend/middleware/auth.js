@@ -10,7 +10,7 @@ module.exports = function (req, res, next) {
     return res.status(401).json({
       errors: [
         {
-          msg: "No token, authorization denied",
+          msg: "No token, authorization denied!",
         },
       ],
     });
@@ -18,7 +18,16 @@ module.exports = function (req, res, next) {
 
   try {
     const decoded = jwt.verify(token, config.get("jwtSecret"));
-    req.user = decoded;
+    req.username = decoded.username;
+    if (req.username !== "kodluyoruz") {
+      return res.status(401).json({
+        errors: [
+          {
+            msg: "You are not Admin, authorization denied!",
+          },
+        ],
+      });
+    }
     next();
   } catch (err) {
     res.status(401).json({

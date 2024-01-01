@@ -1,17 +1,17 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const jwt = require('jsonwebtoken');
-const { check, validationResult } = require('express-validator');
-const config = require('config');
+const jwt = require("jsonwebtoken");
+const { check, validationResult } = require("express-validator");
+const config = require("config");
 
 // @route   POST /api/auth/login
 // @desc    Login user & get token
 // @access  Public
 router.post(
-  '/login',
+  "/login",
   [
-    check('username', 'Lütfen geçerli bir username giriniz!').exists(),
-    check('password', 'Lütfen geçerli bir şifre giriniz!').exists(),
+    check("username", "Lütfen geçerli bir username giriniz!").exists(),
+    check("password", "Lütfen geçerli bir şifre giriniz!").exists(),
   ],
   async (req, res) => {
     const errors = validationResult(req);
@@ -24,9 +24,9 @@ router.post(
     const { username, password } = req.body;
 
     try {
-      if (!(username === 'kodluyoruz' && password === 'bootcamp109')) {
+      if (!(username === "kodluyoruz" && password === "bootcamp109")) {
         return res.status(400).json({
-          msg: 'Geçersiz kullanıcı adı veya şifre!',
+          msg: "Geçersiz kullanıcı adı veya şifre!",
         });
       }
 
@@ -34,22 +34,22 @@ router.post(
         {
           username,
         },
-        config.get('jwtSecret'),
+        config.get("jwtSecret"),
         {
-          expiresIn: 360000,
+          expiresIn: 3600000,
         },
         (err, token) => {
           if (err) throw err;
           res.json({
             token,
           });
-        },
+        }
       );
     } catch (err) {
       console.error(err.message);
-      res.status(500).send('Sunucu hatası');
+      res.status(500).send("Sunucu hatası");
     }
-  },
+  }
 );
 
 module.exports = router;
