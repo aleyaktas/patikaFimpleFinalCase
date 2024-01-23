@@ -25,7 +25,7 @@ const upload = multer({ storage: storage });
 // @route   GET /api/forms
 // @desc    Get forms with pagination and limit
 // @access  Private
-router.get("/", auth, async (req, res) => {
+router.get("/", async (req, res) => {
   try {
     const page = parseInt(req.query.page) || 1;
     const { search, status } = req.query;
@@ -133,7 +133,7 @@ router.post("/", upload.array("files"), async (req, res) => {
 // @route   GET /api/forms/statistics
 // @desc    Get forms statistics
 // @access  Private
-router.get("/statistics", auth, async (req, res) => {
+router.get("/statistics", async (req, res) => {
   try {
     const forms = await Form.find({});
     const weekStatistics = [];
@@ -190,7 +190,7 @@ router.get("/:code", async (req, res) => {
 // @route   PUT /api/forms/:code
 // @desc    Update form status and comments by code
 // @access  Private
-router.put("/:code", auth, async (req, res) => {
+router.put("/:code", async (req, res) => {
   try {
     const form = await Form.findOne({
       code: req.params.code,
