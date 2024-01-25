@@ -110,24 +110,14 @@ router.post("/", upload.array("files"), async (req, res) => {
 
     if (req.files) {
       const filePromises = req.files.map(async (file) => {
-        // Base64 verisini resme dönüştür
-        const imageBuffer = Buffer.from(file.data, "base64");
-        fs.writeFileSync(
-          `uploads/${form._id}-${file.originalName}`,
-          imageBuffer,
-          "base64"
-        );
+        const newFileName = `${form._id}-${file.originalname
+          .split(" ")
+          .join("")}`;
+        const newFilePath = `uploads/${newFileName}`;
 
-        return `uploads/${form._id}-${file.originalname}`;
+        fs.renameSync(`uploads/${file.filename}`, newFilePath);
 
-        // const newFileName = `${form._id}-${file.originalname
-        //   .split(" ")
-        //   .join("")}`;
-        // const newFilePath = `uploads/${newFileName}`;
-
-        // fs.renameSync(`uploads/${file.filename}`, newFilePath);
-
-        // return newFilePath;
+        return newFilePath;
       });
 
       form.files = await Promise.all(filePromises);
@@ -198,10 +188,10 @@ router.get("/:code", async (req, res) => {
   }
 });
 
-// @route   PUT /api/forms/:code
-// @desc    Update form status and comments by code
+// @route   PATCH /api/forms/:code
+// @desc    Partially update form status and comments by code
 // @access  Private
-router.put("/:code", async (req, res) => {
+router.patch("/:code", async (req, res) => {
   try {
     const form = await Form.findOne({
       code: req.params.code,
@@ -212,7 +202,9 @@ router.put("/:code", async (req, res) => {
         msg: "Form bulunamadı",
       });
     }
-    const { comment, status } = req.body;
+
+    const { comment, status, name, surname, age, identity, reason, address } =
+      req.body;
 
     if (comment) {
       const newComment = new Comment({
@@ -222,12 +214,42 @@ router.put("/:code", async (req, res) => {
       await newComment.save();
       form.comments.push(newComment._id);
     }
-    if (status) {
-      form.status = status;
-    }
+
+    form.status = status || form.status;
+    form.name = name || form.name;
+    form.surname = surname || form.surname;
+    form.age = age || form.age;
+    form.identity = identity || form.identity;
+    form.reason = reason || form.reason;
+    form.address = address || form.address;
+
     await form.save();
     await form.populate("comments");
     res.json(form);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Sunucu hatası");
+  }
+});
+
+// @route   DELETE /api/forms/:code
+// @desc    Delete a form by code
+// @access  Private
+router.delete("/:code", async (req, res) => {
+  try {
+    const form = await Form.findOneAndRemove({
+      code: req.params.code,
+    });
+
+    if (!form) {
+      return res.status(404).json({
+        msg: "Form bulunamadı",
+      });
+    }
+
+    await Comment.deleteMany({ form: form._id });
+
+    res.json({ msg: "Form silindi" });
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Sunucu hatası");
