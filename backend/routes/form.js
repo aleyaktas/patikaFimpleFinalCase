@@ -28,6 +28,7 @@ const upload = multer({ storage: storage });
 router.get("/", async (req, res) => {
   try {
     const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 20;
     const { search, status } = req.query;
 
     if (page <= 0) {
@@ -72,8 +73,8 @@ router.get("/", async (req, res) => {
 
     const forms = await Form.find(formsQuery)
       .sort({ createdAt: -1 })
-      .skip((page - 1) * 20)
-      .limit(20)
+      .skip((page - 1) * limit)
+      .limit(limit)
       .exec();
 
     res.json({
@@ -109,14 +110,24 @@ router.post("/", upload.array("files"), async (req, res) => {
 
     if (req.files) {
       const filePromises = req.files.map(async (file) => {
-        const newFileName = `${form._id}-${file.originalname
-          .split(" ")
-          .join("")}`;
-        const newFilePath = `uploads/${newFileName}`;
+        // Base64 verisini resme dönüştür
+        const imageBuffer = Buffer.from(file.data, "base64");
+        fs.writeFileSync(
+          `uploads/${form._id}-${file.originalName}`,
+          imageBuffer,
+          "base64"
+        );
 
-        fs.renameSync(`uploads/${file.filename}`, newFilePath);
+        return `uploads/${form._id}-${file.originalname}`;
 
-        return newFilePath;
+        // const newFileName = `${form._id}-${file.originalname
+        //   .split(" ")
+        //   .join("")}`;
+        // const newFilePath = `uploads/${newFileName}`;
+
+        // fs.renameSync(`uploads/${file.filename}`, newFilePath);
+
+        // return newFilePath;
       });
 
       form.files = await Promise.all(filePromises);
