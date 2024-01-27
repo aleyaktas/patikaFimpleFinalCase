@@ -157,7 +157,7 @@ router.get("/statistics", async (req, res) => {
           form.createdAt.getFullYear() === date.getFullYear()
       ).length;
       weekStatistics.push({
-        date: date.toLocaleDateString("tr-TR", { weekday: "long" }),
+        date: date.toLocaleDateString("en-US", { weekday: "long" }),
         count,
       });
     }
