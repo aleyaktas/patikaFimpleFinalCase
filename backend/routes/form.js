@@ -28,7 +28,7 @@ const upload = multer({ storage: storage });
 router.get("/", async (req, res) => {
   try {
     const page = parseInt(req.query.page) || 1;
-    const limit = parseInt(req.query.limit) || 20;
+    const limit = parseInt(req.query.limit);
     const { search, status } = req.query;
 
     if (page <= 0) {
@@ -71,16 +71,25 @@ router.get("/", async (req, res) => {
       formsQuery.status = status;
     }
 
-    const forms = await Form.find(formsQuery)
-      .sort({ createdAt: -1 })
-      .skip((page - 1) * limit)
-      .limit(limit)
-      .exec();
+    if (limit) {
+      const forms = await Form.find(formsQuery)
+        .sort({ createdAt: -1 })
+        .skip((page - 1) * limit)
+        .limit(limit)
+        .exec();
 
-    res.json({
-      count: await Form.countDocuments(formsQuery),
-      forms,
-    });
+      return res.json({
+        count: await Form.countDocuments(formsQuery),
+        forms,
+      });
+    } else {
+      const forms = await Form.find(formsQuery).sort({ createdAt: -1 }).exec();
+
+      return res.json({
+        count: await Form.countDocuments(formsQuery),
+        forms,
+      });
+    }
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Sunucu hatası");

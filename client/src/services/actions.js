@@ -18,9 +18,10 @@ export const adminLogin = async (authData) => {
 export const getForms = async (
   pageNumber = 1,
   searchText = "",
-  status = ""
+  status = "",
+  limit = 20
 ) => {
-  const params = `?page=${pageNumber}&search=${searchText}&status=${status}`;
+  const params = `?page=${pageNumber}&search=${searchText}&status=${status}&limit=${limit}`;
   const result = await get("/forms", params);
   return result;
 };

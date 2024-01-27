@@ -30,7 +30,12 @@ const AdminApplicationList = () => {
   const getAllForms = async () => {
     try {
       setLoading(true);
-      const res = await getForms(pageNumber, searchText, selectedOption);
+      const res = await getForms(
+        pageNumber,
+        searchText,
+        selectedOption,
+        PER_PAGE_COUNT
+      );
       setApplicationList(res.forms);
       setPageCount(Math.ceil(res.count / PER_PAGE_COUNT + 1));
     } catch (error) {
